@@ -2,30 +2,30 @@ package model;
 
 import java.util.Date;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "tbHOKHAU")
 public class HoKhau {
-	private String idHoKhau;
-	private String diaChiThuongTru;
-	private Date ngayDangKi; 
-	private boolean trangThai;
-	private int soLuong;
-	private String ghiChu;
-	
-	public HoKhau() {
-		
-	}
 
-	public HoKhau(String idHoKhau, String diaChiThuongTru, Date ngayDangKi, boolean trangThai, int soLuong,
-			String ghiChu) {
-		super();
-		this.idHoKhau = idHoKhau;
-		this.diaChiThuongTru = diaChiThuongTru;
-		this.ngayDangKi = ngayDangKi;
-		this.trangThai = trangThai;
-		this.soLuong = soLuong;
-		this.ghiChu = ghiChu;
-	}
+    @Id
+    @Column(name = "idHoKhau")
+    private String idHoKhau;
 
+    @Column(name = "diaChiThuongTru")
+    private String diaChiThuongTru;
 
+    @Column(name = "ngayDangKi")
+    private Date ngayDangKi;
+
+    @Column(name = "trangThai")
+    private String trangThai;
+
+    @Column(name = "soLuong")
+    private int soLuong;
+
+    @Column(name = "ghiChu", columnDefinition = "nvarchar(MAX)")
+    private String ghiChu;
 
 	public String getIdHoKhau() {
 		return idHoKhau;
@@ -51,11 +51,11 @@ public class HoKhau {
 		this.ngayDangKi = ngayDangKi;
 	}
 
-	public boolean isTrangThai() {
+	public String getTrangThai() {
 		return trangThai;
 	}
 
-	public void setTrangThai(boolean trangThai) {
+	public void setTrangThai(String trangThai) {
 		this.trangThai = trangThai;
 	}
 
@@ -74,6 +74,22 @@ public class HoKhau {
 	public void setGhiChu(String ghiChu) {
 		this.ghiChu = ghiChu;
 	}
-	
+
+	public HoKhau(String idHoKhau, String diaChiThuongTru, Date ngayDangKi, String trangThai, int soLuong,
+			String ghiChu) {
+		this.idHoKhau = idHoKhau;
+		this.diaChiThuongTru = diaChiThuongTru;
+		this.ngayDangKi = ngayDangKi;
+		this.trangThai = trangThai;
+		this.soLuong = soLuong;
+		this.ghiChu = ghiChu;
+	}
+	public HoKhau() {
+	}
+	@Override
+	public String toString() {
+		return getIdHoKhau();
+	}
 	
 }
+

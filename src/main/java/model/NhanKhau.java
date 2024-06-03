@@ -2,47 +2,77 @@ package model;
 
 import java.util.Date;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "tbNHANKHAU")
 public class NhanKhau {
+
+	@Id
+	@Column(name = "idNhanKhau")
 	private String idNhanKhau;
-	private String idHoKhau;
+
+	@ManyToOne
+	@JoinColumn(name = "idHoKhau")
+	private HoKhau hoKhau;
+
+	@Column(name = "tenCongDan")
 	private String tenCongDan;
+
+	@Column(name = "cccd")
 	private String cccd;
+
+	@Column(name = "ngaySinh")
 	private Date ngaySinh;
+
+	@Column(name = "email")
 	private String email;
-	private boolean gioiTinh;
+
+	@Column(name = "gioiTinh")
+	private String gioiTinh;
+
+	@Column(name = "sdt")
 	private String sdt;
+
+	@Column(name = "diaChiThuongTru")
 	private String diaChiThuongTru;
+
+	@Column(name = "noiOHienTai")
 	private String noiOHienTai;
+
+	@Column(name = "noiSinh")
 	private String noiSinh;
+
+	@Column(name = "quanHe")
 	private String quanHe;
+
+	@Column(name = "quocTich")
 	private String quocTich;
+
+	@Column(name = "danToc")
 	private String danToc;
+
+	@Column(name = "ngheNghiep")
 	private String ngheNghiep;
+
+	@Column(name = "tinhTrangCuTru")
 	private String tinhTrangCuTru;
+
+	@Column(name = "tinhTrangHocVan")
 	private String tinhTrangHocVan;
+
+	@Column(name = "tinhTrangHonNhan")
 	private String tinhTrangHonNhan;
+
+	@Column(name = "ngayCapNhat")
 	private Date ngayCapNhat;
+
+	@Column(name = "ghiChu", columnDefinition = "nvarString(MAX)")
 	private String ghiChu;
-	
+
 	public NhanKhau() {
-		
+
 	}
-	
-
-	public NhanKhau(String idNhanKhau, String idHoKhau, String tenCongDan, String cccd, String noiOHienTai,
-			String quocTich, String danToc) {
-		super();
-		this.idNhanKhau = idNhanKhau;
-		this.idHoKhau = idHoKhau;
-		this.tenCongDan = tenCongDan;
-		this.cccd = cccd;
-		this.noiOHienTai = noiOHienTai;
-		this.quocTich = quocTich;
-		this.danToc = danToc;
-	}
-
-
-
 
 	public String getIdNhanKhau() {
 		return idNhanKhau;
@@ -52,12 +82,12 @@ public class NhanKhau {
 		this.idNhanKhau = idNhanKhau;
 	}
 
-	public String getIdHoKhau() {
-		return idHoKhau;
+	public HoKhau getHoKhau() {
+		return hoKhau;
 	}
 
-	public void setIdHoKhau(String idHoKhau) {
-		this.idHoKhau = idHoKhau;
+	public void setHoKhau(HoKhau hoKhau) {
+		this.hoKhau = hoKhau;
 	}
 
 	public String getTenCongDan() {
@@ -92,12 +122,12 @@ public class NhanKhau {
 		this.email = email;
 	}
 
-	public boolean isGioiTinh() {
+	public String getGioiTinh() {
 		return gioiTinh;
 	}
 
-	public void setGioiTin(boolean gioiTin) {
-		this.gioiTinh = gioiTin;
+	public void setGioiTinh(String gioiTinh) {
+		this.gioiTinh = gioiTinh;
 	}
 
 	public String getSdt() {
@@ -204,17 +234,31 @@ public class NhanKhau {
 		this.ghiChu = ghiChu;
 	}
 
-
-	@Override
-	public String toString() {
-		return "NhanKhau [idNhanKhau=" + idNhanKhau + ", idHoKhau=" + idHoKhau + ", tenCongDan=" + tenCongDan
-				+ ", cccd=" + cccd + ", ngaySinh=" + ngaySinh + ", email=" + email + ", gioiTinh=" + gioiTinh + ", sdt="
-				+ sdt + ", diaChiThuongTru=" + diaChiThuongTru + ", noiOHienTai=" + noiOHienTai + ", noiSinh=" + noiSinh
-				+ ", quanHe=" + quanHe + ", quocTich=" + quocTich + ", danToc=" + danToc + ", ngheNghiep=" + ngheNghiep
-				+ ", tinhTrangCuTru=" + tinhTrangCuTru + ", tinhTrangHocVan=" + tinhTrangHocVan + ", tinhTrangHonNhan="
-				+ tinhTrangHonNhan + ", ngayCapNhat=" + ngayCapNhat + ", ghiChu=" + ghiChu + "]";
+	public NhanKhau(String idNhanKhau, HoKhau hoKhau, String tenCongDan, String cccd, Date ngaySinh, String email,
+			String gioiTinh, String sdt, String diaChiThuongTru, String noiOHienTai, String noiSinh, String quanHe,
+			String quocTich, String danToc, String ngheNghiep, String tinhTrangCuTru, String tinhTrangHocVan,
+			String tinhTrangHonNhan, Date ngayCapNhat, String ghiChu) {
+		super();
+		this.idNhanKhau = idNhanKhau;
+		this.hoKhau = hoKhau;
+		this.tenCongDan = tenCongDan;
+		this.cccd = cccd;
+		this.ngaySinh = ngaySinh;
+		this.email = email;
+		this.gioiTinh = gioiTinh;
+		this.sdt = sdt;
+		this.diaChiThuongTru = diaChiThuongTru;
+		this.noiOHienTai = noiOHienTai;
+		this.noiSinh = noiSinh;
+		this.quanHe = quanHe;
+		this.quocTich = quocTich;
+		this.danToc = danToc;
+		this.ngheNghiep = ngheNghiep;
+		this.tinhTrangCuTru = tinhTrangCuTru;
+		this.tinhTrangHocVan = tinhTrangHocVan;
+		this.tinhTrangHonNhan = tinhTrangHonNhan;
+		this.ngayCapNhat = ngayCapNhat;
+		this.ghiChu = ghiChu;
 	}
-	
-	
 
 }
