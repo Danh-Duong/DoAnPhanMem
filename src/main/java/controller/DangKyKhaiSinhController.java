@@ -92,15 +92,6 @@ public class DangKyKhaiSinhController extends HttpServlet {
 		String idNhanKhauCha = "NK0003";
 		String idNhanKhauMe = "NK0004";
 		String quanHeNguoiKhaiSinh = request.getParameter("quanHeNguoiKhaiSinh");
-		
-		System.out.println("hoTen" + hoTen);
-		System.out.println("ngaySinh" + ngaySinh);
-		System.out.println("gioiTinh" + gioiTinh);
-		System.out.println("quocTich" + quocTich);
-		System.out.println("danToc" + danToc);
-		System.out.println("noiSinh" + noiSinh);
-		System.out.println("queQuan" + queQuan);
-		System.out.println("quanHeNguoiKhaiSinh" + quanHeNguoiKhaiSinh);
 
 		if (idHoKhau == null || hoTen == null || ngaySinh == null || gioiTinh == null || quocTich == null
 				|| danToc == null || noiSinh == null || queQuan == null || idNhanKhauCha == null || queQuan == null
@@ -109,7 +100,7 @@ public class DangKyKhaiSinhController extends HttpServlet {
 			request.getRequestDispatcher("DangkyKhaiSinh.jsp").forward(request, response);
 		} else {
 			KhaiSinh khaiSinh = new KhaiSinh(maDangKiKhaiSinh, idHoKhau, hoTen, ngaySinh, gioiTinh, quocTich, danToc,
-					noiSinh, queQuan, "Đà Nẵng",idNhanKhauCha, idNhanKhauMe, quanHeNguoiKhaiSinh);
+					noiSinh, queQuan, "Đà Nẵng",idNhanKhauCha, idNhanKhauMe, quanHeNguoiKhaiSinh, "Chờ xét duyệt");
 			if (khaiSinhRepository.saveKhaiSinh(khaiSinh)) {
 //			EmailUtils.sendEmail(request.getParameter("nguoiyeucau"),nhanKhauRepository.getIdByCCCD(CookieUtils.getCookieByName(request, "cccd")), maDangKiKhaiSinh);
 				EmailUtils.sendEmail(request.getParameter("nguoiyeucau"), "testdanh26@gmail.com", maDangKiKhaiSinh);			

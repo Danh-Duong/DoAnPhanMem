@@ -137,11 +137,11 @@
 							style="color: #337ab7; margin: 0 8px 0 6px; font-size: 17px;"></i>
 							Hồ sơ<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
-							<li style="background-color: #eee;"><a href="flot.html">Đăng
+							<li style="background-color: #eee;"><a href="duyetKhaiSinh">Đăng
 									ký khai sinh</a></li>
 							<li><a href="morris.html">Đăng ký khai tử</a></li>
 						</ul> <!-- /.nav-second-level --></li>
-					<li><a href="products"><i class="fa-solid fa-people-roof"
+					<li><a href="hokhau"><i class="fa-solid fa-people-roof"
 							style="color: #337ab7; margin: 0 4px;"></i> Hộ khẩu</a></li>
 					<li><a href="catalogs"><i class="fa-solid fa-user"
 							style="color: #337ab7; margin: 0 7px;"></i> Nhân khẩu</a></li>
@@ -157,166 +157,173 @@
 				<div
 					style="padding: 45px 45px 10px; background-color: #f8f8f8; margin: 0 165px;">
 					<p class="title">TỜ KHAI ĐĂNG KÍ KHAI SINH</p>
-					
-						<div class="info">
-							<p class="info-title">Mã hồ sơ: <span style="font-size: 20px; font-weight: 600"> ${khaisinh.maDangKiKhaiSinh}</span></p>
+
+					<div class="info">
+						<p class="info-title">
+							Mã hồ sơ: <span style="font-size: 20px; font-weight: 600">
+								${khaisinh.maDangKiKhaiSinh}</span>
+						</p>
+					</div>
+
+					<div>
+						<p style="margin-top: 10px;">Thông tin khai sinh:</p>
+						<div class="info-detail">
+							<div class="row">
+								<div class="col-md-6">
+									<p class="info-title1">Họ, chữ đệm, tên</p>
+									<input readonly="readonly" class="info-value" name="hoTen"
+										value="${khaisinh.hoTen}">
+								</div>
+								<div class="col-md-6">
+									<p class="info-title1">Ngày, tháng, năm sinh</p>
+									<input readonly="readonly" class="info-value" name="ngaySinh"
+										value="${ngaysinh}">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<p class="info-title1">Nơi sinh:</p>
+									<input readonly="readonly" class="info-value" name="noiSinh"
+										value="${khaisinh.noiSinh}">
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-4">
+									<p class="info-title1">Giới tính:</p>
+									<c:if test="${khaisinh.gioiTinh=='M'}">
+										<input readonly="readonly" class="info-value" name="gioiTinh"
+											value="Nam">
+									</c:if>
+									<c:if test="${khaisinh.gioiTinh!='M'}">
+										<input readonly="readonly" class="info-value" name="gioiTinh"
+											value="Nữ">
+									</c:if>
+
+								</div>
+								<div class="col-md-4">
+									<p class="info-title1">Dân tộc:</p>
+									<input readonly="readonly" class="info-value" name=danToc
+										value="${khaisinh.danToc}">
+								</div>
+								<div class="col-md-4">
+									<p class="info-title1">Quốc tịch:</p>
+									<input readonly="readonly" class="info-value" name=quocTich
+										value="${khaisinh.quocTich}">
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-12">
+									<p class="info-title1">Quê quán:</p>
+									<input readonly="readonly" class="info-value" name="queQuan"
+										value="${khaisinh.queQuan}">
+								</div>
+							</div>
 						</div>
 
-						<div>
-							<p style="margin-top: 10px;">Thông tin khai sinh:</p>
-							<div class="info-detail">
-								<div class="row">
-									<div class="col-md-6">
-										<p class="info-title1">Họ, chữ đệm, tên</p>
-										<input readonly="readonly" class="info-value" name="hoTen"
-											value="${khaisinh.hoTen}">
-									</div>
-									<div class="col-md-6">
-										<p class="info-title1">Ngày, tháng, năm sinh</p>
-										<input readonly="readonly" class="info-value" name="ngaySinh"
-											value="${ngaysinh}">
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-12">
-										<p class="info-title1">Nơi sinh:</p>
-										<input readonly="readonly" class="info-value" name="noiSinh"
-											value="${khaisinh.noiSinh}">
-									</div>
-								</div>
 
-								<div class="row">
-									<div class="col-md-4">
-										<p class="info-title1">Giới tính:</p>
-										<c:if test="${khaisinh.gioiTinh=='M'}">
-											<input readonly="readonly" class="info-value" name="gioiTinh"
-												value="Nam">
-										</c:if>
-										<c:if test="${khaisinh.gioiTinh!='M'}">
-											<input readonly="readonly" class="info-value" name="gioiTinh"
-												value="Nữ">
-										</c:if>
+						<div class="info-detail">
 
-									</div>
-									<div class="col-md-4">
-										<p class="info-title1">Dân tộc:</p>
-										<input readonly="readonly" class="info-value" name=danToc
-											value="${khaisinh.danToc}">
-									</div>
-									<div class="col-md-4">
-										<p class="info-title1">Quốc tịch:</p>
-										<input readonly="readonly" class="info-value" name=quocTich
-											value="${khaisinh.quocTich}">
-									</div>
+							<div class="row">
+								<div class="col-md-6">
+									<p class="info-title1" style="width: 400px;">Họ, chữ đệm,
+										tên mẹ:</p>
+									<input readonly="readonly" class="info-value"
+										value="${me.tenCongDan}">
 								</div>
-
-								<div class="row">
-									<div class="col-md-12">
-										<p class="info-title1">Quê quán:</p>
-										<input readonly="readonly" class="info-value" name="queQuan"
-											value="${khaisinh.queQuan}">
-									</div>
+								<div class="col-md-6">
+									<p class="info-title1" style="width: 400px;">CCCD:</p>
+									<input readonly="readonly" class="info-value" name="cccdMe"
+										value="${me.cccd}">
 								</div>
 							</div>
 
-
-							<div class="info-detail">
-
-								<div class="row">
-									<div class="col-md-6">
-										<p class="info-title1" style="width: 400px;">Họ, chữ đệm,
-											tên mẹ:</p>
-										<input readonly="readonly" class="info-value"
-											value="${me.tenCongDan}">
-									</div>
-									<div class="col-md-6">
-										<p class="info-title1" style="width: 400px;">CCCD:</p>
-										<input readonly="readonly" class="info-value" name="cccdMe"
-											value="${me.cccd}">
-									</div>
+							<div class="row">
+								<div class="col-md-6">
+									<p class="info-title1">Dân tộc:</p>
+									<input readonly="readonly" class="info-value"
+										value="${me.danToc}">
 								</div>
-
-								<div class="row">
-									<div class="col-md-6">
-										<p class="info-title1">Dân tộc:</p>
-										<input readonly="readonly" class="info-value"
-											value="${me.danToc}">
-									</div>
-									<div class="col-md-6">
-										<p class="info-title1">Quốc tịch:</p>
-										<input readonly="readonly" class="info-value"
-											value="${me.quocTich}">
-									</div>
-								</div>
-
-								<div class="row">
-									<div class="col-md-12">
-										<p class="info-title1">Nơi cư trú:</p>
-										<input readonly="readonly" class="info-value"
-											value="${me.noiOHienTai}">
-									</div>
+								<div class="col-md-6">
+									<p class="info-title1">Quốc tịch:</p>
+									<input readonly="readonly" class="info-value"
+										value="${me.quocTich}">
 								</div>
 							</div>
 
-							<div class="info-detail">
-
-								<div class="row">
-									<div class="col-md-6">
-										<p class="info-title1" style="width: 400px;">Họ, chữ đệm,
-											tên cha:</p>
-										<input readonly="readonly" class="info-value"
-											value="${cha.tenCongDan}">
-									</div>
-									<div class="col-md-6">
-										<p class="info-title1" style="width: 400px;">CCCD:</p>
-										<input readonly="readonly" class="info-value" name="cccdCha"
-											value="${cha.cccd}">
-									</div>
+							<div class="row">
+								<div class="col-md-12">
+									<p class="info-title1">Nơi cư trú:</p>
+									<input readonly="readonly" class="info-value"
+										value="${me.noiOHienTai}">
 								</div>
+							</div>
+						</div>
 
-								<div class="row">
+						<div class="info-detail">
 
-									<div class="col-md-6">
-										<p class="info-title1">Dân tộc:</p>
-										<input readonly="readonly" class="info-value"
-											value="${cha.danToc}">
-									</div>
-									<div class="col-md-6">
-										<p class="info-title1">Quốc tịch:</p>
-										<input readonly="readonly" class="info-value"
-											value="${cha.quocTich}">
-									</div>
+							<div class="row">
+								<div class="col-md-6">
+									<p class="info-title1" style="width: 400px;">Họ, chữ đệm,
+										tên cha:</p>
+									<input readonly="readonly" class="info-value"
+										value="${cha.tenCongDan}">
 								</div>
-
-								<div class="row">
-									<div class="col-md-12">
-										<p class="info-title1">Nơi cư trú:</p>
-										<input readonly="readonly" class="info-value"
-											value="${cha.noiOHienTai}">
-									</div>
+								<div class="col-md-6">
+									<p class="info-title1" style="width: 400px;">CCCD:</p>
+									<input readonly="readonly" class="info-value" name="cccdCha"
+										value="${cha.cccd}">
 								</div>
 							</div>
 
-							<div class="action">
-								<button class="cancel"
-									style="margin: 0 8px; background: #db3d3d;">Trở lại</button>
-								<button class="cancel" onclick="remove()" style="margin: 0 8px">Hủy hồ sơ</button>
-								<button style="margin: 0 8px" class="submit" onclick="submit()">Duyệt hồ
-									sơ</button>
+							<div class="row">
+
+								<div class="col-md-6">
+									<p class="info-title1">Dân tộc:</p>
+									<input readonly="readonly" class="info-value"
+										value="${cha.danToc}">
+								</div>
+								<div class="col-md-6">
+									<p class="info-title1">Quốc tịch:</p>
+									<input readonly="readonly" class="info-value"
+										value="${cha.quocTich}">
+								</div>
 							</div>
-							
-							<script>
-								function submit(){
-									window.location.href = "duyetKhaiSinh?type=yes&mahs=${khaisinh.maDangKiKhaiSinh}";
-								}
-								
-								function remove(){
-									window.location.href = "duyetKhaiSinh?type=no&mahs=${khaisinh.maDangKiKhaiSinh}";
-								}
-							</script>
+
+							<div class="row">
+								<div class="col-md-12">
+									<p class="info-title1">Nơi cư trú:</p>
+									<input readonly="readonly" class="info-value"
+										value="${cha.noiOHienTai}">
+								</div>
+							</div>
+						</div>
+
+						<div class="action">
+							<a href="duyetKhaiSinh"><button class="cancel"
+									style="margin: 0 8px; background: #db3d3d;">Trở lại</button></a>
+							<c:if test="${trangthai=='0'}">
+								<button class="cancel" onclick="remove()" style="margin: 0 8px">Hủy
+									hồ sơ</button>
+								<button style="margin: 0 8px" class="submit" onclick="submit()">Duyệt
+									hồ sơ</button>
+							</c:if>
 
 						</div>
-			
+
+						<script>
+							function submit() {
+								window.location.href = "duyetKhaiSinh?type=yes&mahs=${khaisinh.maDangKiKhaiSinh}";
+							}
+
+							function remove() {
+								window.location.href = "duyetKhaiSinh?type=no&mahs=${khaisinh.maDangKiKhaiSinh}";
+							}
+						</script>
+
+					</div>
+
 				</div>
 
 

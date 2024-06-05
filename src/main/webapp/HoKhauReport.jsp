@@ -137,10 +137,10 @@
     font-size: 17px;"></i> Hồ sơ<span
 							class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
-							<li><a href="khaisinh">Đăng ký khai sinh</a></li>
+							<li><a href="duyetKhaiSinh">Đăng ký khai sinh</a></li>
 							<li><a href="morris.html">Đăng ký khai tử</a></li>
 						</ul> <!-- /.nav-second-level --></li>
-					<li style="background-color: #eee;"><a href="products"><i
+					<li style="background-color: #eee;"><a href=""><i
 							class="fa-solid fa-people-roof"
 							style="color: #337ab7; margin: 0 4px;"></i> Hộ khẩu</a></li>
 					<li><a href="catalogs"><i class="fa-solid fa-user"
