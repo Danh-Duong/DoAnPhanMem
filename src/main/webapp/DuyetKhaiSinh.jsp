@@ -114,41 +114,8 @@
 			</ul>
 			<!-- /.navbar-top-links -->
 		</nav>
-
-		<aside class="sidebar navbar-default" role="navigation">
-			<div class="sidebar-nav navbar-collapse">
-				<ul class="nav in" id="side-menu">
-					<li class="sidebar-search">
-						<div class="input-group custom-search-form">
-							<input type="text" class="form-control" placeholder="Search...">
-							<span class="input-group-btn">
-								<button class="btn btn-primary" type="button"
-									style="padding: 9px 12px;">
-									<i class="fa fa-search"></i>
-								</button>
-							</span>
-						</div> <!-- /input-group -->
-					</li>
-					<li><a href="admin"><i class="fa-solid fa-house"
-							style="color: #337ab7; margin: 0 4px;"></i> Trang chủ</a></li>
-					<li class="active"><a href="#"><i
-							class="fa-regular fa-file-lines"
-							style="color: #337ab7; margin: 0 8px 0 6px; font-size: 17px;"></i>
-							Hồ sơ<span class="fa arrow"></span></a>
-						<ul class="nav nav-second-level">
-							<li style="background-color: #eee;"><a href="flot.html">Đăng
-									ký khai sinh</a></li>
-							<li><a href="morris.html">Đăng ký khai tử</a></li>
-						</ul> <!-- /.nav-second-level --></li>
-					<li><a href="products"><i class="fa-solid fa-people-roof"
-							style="color: #337ab7; margin: 0 4px;"></i> Hộ khẩu</a></li>
-					<li><a href="catalogs"><i class="fa-solid fa-user"
-							style="color: #337ab7; margin: 0 7px;"></i> Nhân khẩu</a></li>
-				</ul>
-			</div>
-			<!-- /.sidebar-collapse -->
-		</aside>
-		<!-- /.sidebar -->
+		
+		<jsp:include page="banner.jsp"></jsp:include>
 
 		<div id="page-wrapper" style="min-height: 279px;">
 			<div class="container-fluid">
@@ -160,23 +127,76 @@
 				<div style="width: 100%; height: 2px; background-color: #d19410;"></div>
 
 				<div>
-				<c:if test="${success!=null}">
-					<div class="alert alert-info alert-dismissible">
-						<button type="button" class="close" data-dismiss="alert"
-							aria-hidden="true">×</button>
-						${success} <a href="#" class="alert-link">Alert Link</a>.
-					</div>
-
-				</c:if>
-					<c:forEach items="${hoso}" var="hs" varStatus="loop">
-						<div class="alert alert-info" style="margin-top: 20px;">
-							${loop.index+1}. Mã hồ sơ: ${hs.maDangKiKhaiSinh} - Mã hộ khẩu:
-							${hs.idHoKhau} <a
-								href="duyetKhaiSinh?mahs=${hs.maDangKiKhaiSinh}"
-								class="alert-link"> Chi tiết</a>.
+					<c:if test="${success!=null}">
+						<div class="alert alert-info alert-dismissible" style="margin-top: 13px">
+							<button type="button" class="close" data-dismiss="alert"
+								aria-hidden="true">×</button>
+							${success}
 						</div>
+
+					</c:if>
+					<div style="display: flex; align-items: center; margin-top: 14px;">
+						<p style="margin: 0 10px 0 0;">Trạng thái</p>
+						<select id="trangthai" class="form-select" name="trangthai"
+							onchange="changeTrangthai(this)"
+							style="padding: 5px 5px 6px; border-color: #c1c1c1; border-radius: 4px; width: 175px; height: 30px;">
+							<option value="1" ${trangthai=="1" ? "selected" : ""}>Đã duyệt</option>
+							<option value="0" ${trangthai=="0" ? "selected" : ""}>Chờ xét duyệt</option>
+							<option value="-1" ${trangthai=="-1" ? "selected" : ""}>Đã
+								hủy</option>
+
+						</select>
+					</div>
+					<c:forEach items="${hoso}" var="hs" varStatus="loop">
+						<c:if test="${trangthai=='1'}"> 
+							<div class="alert alert-info" style="margin-top: 20px;">
+								${loop.index+1}. Mã hồ sơ: ${hs.maDangKiKhaiSinh} - Mã hộ khẩu:
+								${hs.idHoKhau} <a style="float: right;"
+									href="duyetKhaiSinh?mahs=${hs.maDangKiKhaiSinh}"
+									class="alert-link"> Chi tiết</a>
+							</div>
+						</c:if>
+
+						<c:if test="${trangthai=='0'}">
+							<div class="alert alert-warning" style="margin-top: 20px;">
+								${loop.index+1}. Mã hồ sơ: ${hs.maDangKiKhaiSinh} - Mã hộ khẩu:
+								${hs.idHoKhau} <a style="float: right;"
+									href="duyetKhaiSinh?mahs=${hs.maDangKiKhaiSinh}"
+									class="alert-link"> Chi tiết</a>
+							</div>
+						</c:if>
+
+						<c:if test="${trangthai=='-1'}">
+							<div class="alert alert-danger" style="margin-top: 20px;">
+								${loop.index+1}. Mã hồ sơ: ${hs.maDangKiKhaiSinh} - Mã hộ khẩu:
+								${hs.idHoKhau} <a style="float: right;"
+									href="duyetKhaiSinh?mahs=${hs.maDangKiKhaiSinh}"
+									class="alert-link"> Chi tiết</a>
+							</div>
+						</c:if> 
+
 					</c:forEach>
 				</div>
+
+					<script type="text/javascript">
+					function changeTrangthai(selectElement) {
+						var selectedValue = selectElement.value;
+						console.log("Test: " + selectedValue);
+						$.ajax({
+							url : 'duyetKhaiSinh',
+							type : 'GET',
+							data : {
+								trangthai : selectedValue
+							},
+							success : function(response) {
+								$('body').html(response);
+							},
+							error : function(xhr, status, error) {
+								// Xử lý lỗi ở đây
+							}
+						});
+					}
+				</script>
 				<!-- /.row -->
 
 				<!-- /.row -->

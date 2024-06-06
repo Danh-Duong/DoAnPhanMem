@@ -25,7 +25,7 @@ public class KhaiSinh {
     
 	public KhaiSinh(String maDangKiKhaiSinh, String idHoKhau, String hoTen, Date ngaySinh, String gioiTinh,
 			String quocTich, String danToc, String noiSinh, String queQuan, String noiCuTru, String idNhanKhauCha,
-			String idNhanKhauMe, String quanHeNguoiKhaiSinh) {
+			String idNhanKhauMe, String quanHeNguoiKhaiSinh, String trangthai) {
 		super();
 		this.maDangKiKhaiSinh = maDangKiKhaiSinh;
 		this.idHoKhau = idHoKhau;
@@ -40,6 +40,7 @@ public class KhaiSinh {
 		this.idNhanKhauCha = idNhanKhauCha;
 		this.idNhanKhauMe = idNhanKhauMe;
 		this.quanHeNguoiKhaiSinh = quanHeNguoiKhaiSinh;
+		this.trangThaiDuyet=trangthai;
 	}
 
 
