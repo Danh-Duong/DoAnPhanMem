@@ -77,8 +77,8 @@ public class KhaiSinhRepository {
 	}
 	
 	
-	public List<KhaiSinh> getDanhsachHoso() {
-		String query = "select * from tbKHAISINH where trangThaiDuyet=N'Chờ xét duyệt'";
+	public List<KhaiSinh> getDanhsachHoso(String trangthai) {
+		String query = "select * from tbKHAISINH where trangThaiDuyet=N'"+ trangthai + "'";
 		List<KhaiSinh> result = new ArrayList<KhaiSinh>();
 		try {
 			new DBConnect();
@@ -118,7 +118,8 @@ public class KhaiSinhRepository {
 						rs.getString(10),
 						rs.getString(11),
 						rs.getString(12),
-						rs.getString(13));
+						rs.getString(13),
+						rs.getString(14));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -126,8 +127,8 @@ public class KhaiSinhRepository {
 
 		return null;
 	}
-	public boolean updateTrangthai(String mahs) {
-		String query = "update tbKHAISINH set trangThaiDuyet = N'Đã duyệt' where maDangKiKhaiSinh=N'" + mahs+"'";
+	public boolean updateTrangthai(String mahs, String trangthai) {
+		String query = "update tbKHAISINH set trangThaiDuyet = N'" + trangthai + "' where maDangKiKhaiSinh=N'" + mahs+"'";
 		try {
 			new DBConnect();
 			conn = DBConnect.getConnection();

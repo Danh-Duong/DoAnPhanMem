@@ -45,9 +45,24 @@ public class DuyetKhaiSinhController extends HttpServlet {
 		KhaiSinhRepository khaiSinhRepository = new KhaiSinhRepository();
 
 		String mahs = request.getParameter("mahs");
+		String trangthai = request.getParameter("trangthai");
+
+		String tt="";
+		
 		if (mahs == null) {
-			request.setAttribute("hoso", khaiSinhRepository.getDanhsachHoso());
-			request.setAttribute("slhoso", khaiSinhRepository.getDanhsachHoso().size());
+			if (trangthai==null || trangthai.equals("1")) {
+				tt="Đã duyệt";
+				trangthai ="1";
+			}
+			else if (trangthai.equals("0"))
+				tt = "Chờ xét duyệt";
+			else 
+				tt = "Đã hủy";
+				
+			
+			request.setAttribute("hoso", khaiSinhRepository.getDanhsachHoso(tt));
+			request.setAttribute("slhoso", khaiSinhRepository.getDanhsachHoso(tt).size());
+			request.setAttribute("trangthai", trangthai);
 			request.getRequestDispatcher("DuyetKhaiSinh.jsp").forward(request, response);
 		} else {
 			String type = request.getParameter("type");
@@ -60,21 +75,31 @@ public class DuyetKhaiSinhController extends HttpServlet {
 				request.setAttribute("ngaysinh", outputDateStr);
 				request.setAttribute("khaisinh", ks);
 				
+				if (ks.getTrangThaiDuyet().equals("Chờ xét duyệt"))
+					request.setAttribute("trangthai", "0");
+				
 				request.setAttribute("me", nhanKhauRepository.getNhanKhauById(ks.getIdNhanKhauMe()));
 				request.setAttribute("cha", nhanKhauRepository.getNhanKhauById(ks.getIdNhanKhauCha()));
 				request.getRequestDispatcher("ChitietKhaiSinh.jsp").forward(request, response);
 			}
 			
 			else if (type.equals("yes")) {
-				khaiSinhRepository.updateTrangthai(mahs);
+				khaiSinhRepository.updateTrangthai(mahs,"Đã duyệt");
 				nhanKhauRepository.saveNhanKhau(ks, nhanKhauRepository.getNewMaNhanKhau());
 				request.setAttribute("success", "Duyệt hồ sơ thành công!");
+				request.setAttribute("hoso", khaiSinhRepository.getDanhsachHoso("Đã duyệt"));
+				request.setAttribute("slhoso", khaiSinhRepository.getDanhsachHoso("Đã duyệt").size());
+				request.setAttribute("trangthai", 1);
 				request.getRequestDispatcher("DuyetKhaiSinh.jsp").forward(request, response);
+				
 			}
 			
 			else {
-				khaiSinhRepository.deleteKhaiSinh(mahs);
-				request.setAttribute("success", "Xóa hồ sơ thành công!");
+				khaiSinhRepository.updateTrangthai(mahs,"Đã hủy");
+				request.setAttribute("success", "Hủy hồ sơ thành công!");
+				request.setAttribute("hoso", khaiSinhRepository.getDanhsachHoso("Đã duyệt"));
+				request.setAttribute("slhoso", khaiSinhRepository.getDanhsachHoso("Đã duyệt").size());
+				request.setAttribute("trangthai", 1);
 				request.getRequestDispatcher("DuyetKhaiSinh.jsp").forward(request, response);
 			}
 			
