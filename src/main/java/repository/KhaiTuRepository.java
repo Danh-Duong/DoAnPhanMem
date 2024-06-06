@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.text.DecimalFormat;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class KhaiTuRepository {
 			ps.setString(11, khaitu.getNoiCuTruCuoiCung());
 			java.sql.Date sqlNgaymat = new java.sql.Date(khaitu.getNgayMat().getTime());
 	        ps.setDate(12, sqlNgaymat);
-	        java.sql.Time sqlGioMat = new java.sql.Time(khaitu.getGioMat().getTime());
+	        Time sqlGioMat = Time.valueOf(khaitu.getGioMat());
 	        ps.setTime(13,sqlGioMat);
 			ps.setString(14, khaitu.getNguyenNhan());
 			ps.setString(15, khaitu.getNoiDangKi());
@@ -72,7 +73,7 @@ public class KhaiTuRepository {
 				String maks=rs.getString(1);
 				int somaks = Integer.parseInt(maks.substring(2))+1;
 				DecimalFormat format =  new DecimalFormat("0000");
-				return "KS" + format.format(somaks);
+				return "KT" + format.format(somaks);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -123,7 +124,7 @@ public class KhaiTuRepository {
 						rs.getString(10),
 						rs.getString(11),
 						new java.util.Date(rs.getDate(12).getTime()),
-						new Time(rs.getTime(13).getTime()),
+						rs.getTime(13).toLocalTime(),
 						rs.getString(14),
 						rs.getString(15),
 						new java.util.Date(rs.getDate(16).getTime()),

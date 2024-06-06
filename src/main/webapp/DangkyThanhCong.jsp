@@ -23,9 +23,9 @@
         </div>
         <div class="info">
             <p style="font-size: 20px; font-weight: 500;">Chúc mừng</p>
-            <p style="margin-bottom: 2px;">Bạn đã nộp hồ sơ đăng ký khai sinh thành công</p>
+            <p style="margin-bottom: 2px;">Bạn đã nộp hồ sơ đăng ký ${hoso} thành công</p>
             <p style="display: inline-block;">Mã hồ sơ của bạn là: </p>
-            <span style="color: red;display: inline-block; font-size: 20px;">${maDangKiKhaiSinh}</span>
+            <span style="color: red;display: inline-block; font-size: 20px;">${madangky}</span>
             <p>
                 Bạn sẽ nhận được thông báo của cơ quan ủy ban phường Thanh Bình qua email.
             </p>

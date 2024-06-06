@@ -1,6 +1,6 @@
 package model;
 
-import java.sql.Time;
+import java.time.LocalTime;
 import java.util.Date;
 
 public class KhaiTu {
@@ -16,7 +16,7 @@ public class KhaiTu {
     private String danToc;
     private String noiCuTruCuoiCung;
     private Date ngayMat;
-    private Time gioMat;
+    private LocalTime gioMat;
     private String nguyenNhan;
     private String noiDangKi;
     private Date ngayDangKi;
@@ -27,7 +27,7 @@ public class KhaiTu {
     
 	public KhaiTu(String maKhaiTu, String idNhanKhau, String hoTenNguoiKhai, String noiCuTruNguoiKhai,
 			String hoTenNguoiMat, Date ngaySinh, String noiSinh, String gioiTinh, String quocTich, String danToc,
-			String noiCuTruCuoiCung, Date ngayMat, Time gioMat, String nguyenNhan, String noiDangKi, Date ngayDangKi,
+			String noiCuTruCuoiCung, Date ngayMat, LocalTime gioMat, String nguyenNhan, String noiDangKi, Date ngayDangKi,
 			String quanHeVoiNguoiMat, String trangThaiDuyet) {
 		super();
 		this.maKhaiTu = maKhaiTu;
@@ -130,10 +130,10 @@ public class KhaiTu {
 	public void setNgayMat(Date ngayMat) {
 		this.ngayMat = ngayMat;
 	}
-	public Time getGioMat() {
+	public LocalTime getGioMat() {
 		return gioMat;
 	}
-	public void setGioMat(Time gioMat) {
+	public void setGioMat(LocalTime gioMat) {
 		this.gioMat = gioMat;
 	}
 	public String getNguyenNhan() {

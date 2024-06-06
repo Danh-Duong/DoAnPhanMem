@@ -8,6 +8,8 @@ import java.net.URL;
 import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -75,7 +77,13 @@ public class DangKyKhaiTuController extends HttpServlet {
             e.printStackTrace();
         }
         String gioMatStr = request.getParameter("gioMat");
-        Time gioMat = Time.valueOf(gioMatStr);
+//        System.out.println("Time: " + gioMatStr);
+//        Time gioMat = Time.valueOf(gioMatStr);
+        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        // Chuyển chuỗi sang kiểu LocalTime
+        LocalTime gioMat = LocalTime.parse(gioMatStr, formatter);
+        
         String nguyenNhan = request.getParameter("nguyenNhan");
         String noiDangKi = request.getParameter("noiDangKi");
         Date ngayDangKi = null;
@@ -105,8 +113,9 @@ public class DangKyKhaiTuController extends HttpServlet {
 
             if (result) {
                 // If saved successfully, redirect to the success notification page
-                request.setAttribute("maKhaiTu", maKhaiTu);
-                request.getRequestDispatcher("KhaiTuThanhCong.jsp").forward(request, response);
+                request.setAttribute("madangky", maKhaiTu);
+                request.setAttribute("hoso", "khai sinh");
+                request.getRequestDispatcher("DangkyThanhCong.jsp").forward(request, response);
             } else {
                 // If not successful, return to the registration page with an error message
                 request.setAttribute("error", "Có lỗi xảy ra. Vui lòng thử lại.");
