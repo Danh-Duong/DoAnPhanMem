@@ -51,9 +51,13 @@ public class DangKyKhaiSinhController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		List<String> COUNTRY= getData("http://api.nosomovo.xyz/country/getalllist?_gl=1*1jgm3in*_ga*MjQ1MTcwNjMyLjE3MTcwODQzODg.*_ga_XW6CMNCYH8*MTcxNzA4NDM4Ny4xLjEuMTcxNzA4NDQwNS4wLjAuMA..", "name_vi");
-		List<String> ETHNIC = getData("http://api.nosomovo.xyz/ethnic/getalllist?_gl=1*zcyui6*_ga*MjQ1MTcwNjMyLjE3MTcwODQzODg.*_ga_XW6CMNCYH8*MTcxNzA4NDM4Ny4xLjEuMTcxNzA4NDQwNS4wLjAuMA..", "name");
-		
+		List<String> COUNTRY = getData(
+				"http://api.nosomovo.xyz/country/getalllist?_gl=1*1jgm3in*_ga*MjQ1MTcwNjMyLjE3MTcwODQzODg.*_ga_XW6CMNCYH8*MTcxNzA4NDM4Ny4xLjEuMTcxNzA4NDQwNS4wLjAuMA..",
+				"name_vi");
+		List<String> ETHNIC = getData(
+				"http://api.nosomovo.xyz/ethnic/getalllist?_gl=1*zcyui6*_ga*MjQ1MTcwNjMyLjE3MTcwODQzODg.*_ga_XW6CMNCYH8*MTcxNzA4NDM4Ny4xLjEuMTcxNzA4NDQwNS4wLjAuMA..",
+				"name");
+
 		request.setAttribute("ETHNIC", ETHNIC);
 		request.setAttribute("COUNTRY", COUNTRY);
 		request.getRequestDispatcher("DangkyKhaiSinh.jsp").forward(request, response);
@@ -74,9 +78,10 @@ public class DangKyKhaiSinhController extends HttpServlet {
 //		String idHoKhau = nhanKhauRepository.getIdHoKhauByCCCD(CookieUtils.getCookieByName(request, "cccd"));
 		String idHoKhau = "HK006";
 		String hoTen = request.getParameter("hoTen");
-		Date ngaySinh=null;
+		Date ngaySinh = null;
 		try {
-			ngaySinh = sdf.parse(request.getParameter("ngaySinh"));
+			if (!request.getParameter("ngaySinh").equals(""))
+				ngaySinh = sdf.parse(request.getParameter("ngaySinh"));
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -86,81 +91,88 @@ public class DangKyKhaiSinhController extends HttpServlet {
 		String danToc = request.getParameter("danToc");
 		String noiSinh = request.getParameter("noiSinh");
 		String queQuan = request.getParameter("queQuan");
+		String nguoidangky = request.getParameter("nguoidangky");
 //		String idNhanKhauCha = nhanKhauRepository.getIdByCCCD(request.getParameter("cccdCha"));
 //		String idNhanKhauMe = nhanKhauRepository.getIdByCCCD(request.getParameter("cccdMe"));
-		
+
 		String idNhanKhauCha = "NK0003";
 		String idNhanKhauMe = "NK0004";
 		String quanHeNguoiKhaiSinh = request.getParameter("quanHeNguoiKhaiSinh");
 
-		if (idHoKhau == null || hoTen == null || ngaySinh == null || gioiTinh == null || quocTich == null
-				|| danToc == null || noiSinh == null || queQuan == null || idNhanKhauCha == null || queQuan == null
-				|| idNhanKhauMe == null || queQuan == null || quanHeNguoiKhaiSinh == null) {
+		if (idHoKhau == null || nguoidangky == null || hoTen == null || ngaySinh == null || gioiTinh == null
+				|| quocTich == null || danToc == null || noiSinh == null || queQuan == null || idNhanKhauCha == null
+				|| queQuan == null || idNhanKhauMe == null || queQuan == null || quanHeNguoiKhaiSinh == null) {
 			request.setAttribute("error", "Vui lòng nhập đầy đủ thông tin cần thiết");
 			request.getRequestDispatcher("DangkyKhaiSinh.jsp").forward(request, response);
 		} else {
-			KhaiSinh khaiSinh = new KhaiSinh(maDangKiKhaiSinh, idHoKhau, hoTen, ngaySinh, gioiTinh, quocTich, danToc,
-					noiSinh, queQuan, "Đà Nẵng",idNhanKhauCha, idNhanKhauMe, quanHeNguoiKhaiSinh, "Chờ xét duyệt");
+			KhaiSinh khaiSinh = new KhaiSinh(maDangKiKhaiSinh, idHoKhau, nguoidangky, new Date(), hoTen, ngaySinh,
+					gioiTinh, quocTich, danToc, noiSinh, queQuan, "Đà Nẵng", idNhanKhauCha, idNhanKhauMe,
+					quanHeNguoiKhaiSinh, "Chờ xét duyệt");
 			if (khaiSinhRepository.saveKhaiSinh(khaiSinh)) {
 //			EmailUtils.sendEmail(request.getParameter("nguoiyeucau"),nhanKhauRepository.getIdByCCCD(CookieUtils.getCookieByName(request, "cccd")), maDangKiKhaiSinh);
-				EmailUtils.sendEmail(request.getParameter("nguoiyeucau"), "testdanh26@gmail.com", maDangKiKhaiSinh);			
-			request.setAttribute("maDangKiKhaiSinh", maDangKiKhaiSinh);
-			request.getRequestDispatcher("KhaiSinhThanhCong.jsp").forward(request, response);
-			}
-			else {
+				EmailUtils.sendEmail(request.getParameter("nguoidangky"), "testdanh26@gmail.com", maDangKiKhaiSinh, "khai sinh");
+                request.setAttribute("madangky", maDangKiKhaiSinh);
+                request.setAttribute("hoso", "khai sinh");
+                request.getRequestDispatcher("DangkyThanhCong.jsp").forward(request, response);
+			} else {
+				List<String> COUNTRY = getData(
+						"http://api.nosomovo.xyz/country/getalllist?_gl=1*1jgm3in*_ga*MjQ1MTcwNjMyLjE3MTcwODQzODg.*_ga_XW6CMNCYH8*MTcxNzA4NDM4Ny4xLjEuMTcxNzA4NDQwNS4wLjAuMA..",
+						"name_vi");
+				List<String> ETHNIC = getData(
+						"http://api.nosomovo.xyz/ethnic/getalllist?_gl=1*zcyui6*_ga*MjQ1MTcwNjMyLjE3MTcwODQzODg.*_ga_XW6CMNCYH8*MTcxNzA4NDM4Ny4xLjEuMTcxNzA4NDQwNS4wLjAuMA..",
+						"name");
+
+				request.setAttribute("ETHNIC", ETHNIC);
+				request.setAttribute("COUNTRY", COUNTRY);
 				request.setAttribute("error", "Có lỗi xảy ra. Vui lòng thử lại.");
 				request.getRequestDispatcher("DangkyKhaiSinh.jsp").forward(request, response);
 			}
 		}
 	}
-	
-	
-	
+
 	public static List<String> getData(String urlString, String atr) {
 		try {
-            // Đường dẫn URL cần lấy dữ liệu JSON
-//            String urlString = "http://api.nosomovo.xyz/ethnic/getalllist?_gl=1*lj2iun*_ga*MjQ1MTcwNjMyLjE3MTcwODQzODg.*_ga_XW6CMNCYH8*MTcxNzA4NDM4Ny4xLjEuMTcxNzA4NDQwNS4wLjAuMA..";
+			// Tạo đối tượng URL
+			URL url = new URL(urlString);
 
-            // Tạo đối tượng URL
-            URL url = new URL(urlString);
+			// Mở kết nối tới URL
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			connection.setRequestMethod("GET");
 
-            // Mở kết nối tới URL
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
+			// Kiểm tra mã phản hồi HTTP
+			int responseCode = connection.getResponseCode();
+			if (responseCode == HttpURLConnection.HTTP_OK) { // thành công
+				// Đọc dữ liệu từ InputStream của kết nối
+				BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+				String inputLine;
+				StringBuffer content = new StringBuffer();
+				while ((inputLine = in.readLine()) != null) {
+					content.append(inputLine);
+				}
+				in.close();
 
-            // Kiểm tra mã phản hồi HTTP
-            int responseCode = connection.getResponseCode();
-            if (responseCode == HttpURLConnection.HTTP_OK) { // thành công
-                // Đọc dữ liệu từ InputStream của kết nối
-                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                String inputLine;
-                StringBuffer content = new StringBuffer();
-                while ((inputLine = in.readLine()) != null) {
-                    content.append(inputLine);
-                }
-                in.close();
+				// Đóng kết nối
+				connection.disconnect();
 
-                // Đóng kết nối
-                connection.disconnect();
+				JSONArray jsonArray = new JSONArray(content.toString());
 
-                JSONArray jsonArray = new JSONArray(content.toString());
+				// Tạo List để lưu trữ giá trị của thuộc tính name
+				List<String> names = new ArrayList<>();
 
-                // Tạo List để lưu trữ giá trị của thuộc tính name
-                List<String> names = new ArrayList<>();
-
-                // Lặp qua từng phần tử của mảng JSON và thêm giá trị của thuộc tính name vào List
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    String name = jsonObject.getString(atr);
-                    names.add(name);
-                }
-                return names;
-            } else {
-                System.out.println("GET request không thành công. Mã phản hồi: " + responseCode);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+				// Lặp qua từng phần tử của mảng JSON và thêm giá trị của thuộc tính name vào
+				// List
+				for (int i = 0; i < jsonArray.length(); i++) {
+					JSONObject jsonObject = jsonArray.getJSONObject(i);
+					String name = jsonObject.getString(atr);
+					names.add(name);
+				}
+				return names;
+			} else {
+				System.out.println("GET request không thành công. Mã phản hồi: " + responseCode);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 

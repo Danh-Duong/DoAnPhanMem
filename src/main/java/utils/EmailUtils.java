@@ -12,7 +12,7 @@ import javax.mail.internet.MimeMessage;
 
 public class EmailUtils {
 	
-	public static void sendEmail(String name, String email, String madk) {
+	public static void sendEmail(String name, String email, String madk, String hoso) {
 		Properties props = new Properties();
         props.put("mail.smtp.host", MailConfig.HOST_NAME);
         props.put("mail.smtp.port", MailConfig.PORT);
@@ -38,7 +38,7 @@ public class EmailUtils {
 
             // Đặt nội dung email với định dạng HTML
             String htmlContent = "<h1>Xin chào, "+ name +"</h1>"
-            		+ "<h2 style='color: green;'>Đăng ký khai sinh thành công</h2>"
+            		+ "<h2 style='color: green;'>Đăng ký " + hoso + " thành công</h2>"
             		+ "<h3>Mã hồ sơ của bạn là: <span style='color: green; font-size: 28px; font-weight: 600;'>"+ madk+"</span></h3>"
             		+ "<p>Hồ sơ sẽ được giải quyết trong vòng từ 3 - 5 ngày. Chúng tôi sẽ thông báo đến bạn khi hồ sơ hoàn tất.</p>"
             		+ "<p>Xin cảm ơn!</p>";

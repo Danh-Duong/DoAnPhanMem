@@ -19,14 +19,17 @@
 </head>
 
 <body>
+	<div class="header">
+		<%@ include file="header.jsp"%>
+	</div>
+	<div class="nav" style="width: 60%; margin: -16px auto 12px;">
+		<i class="fa-solid fa-house"
+			style="color: #A1A1A1; margin: 4px 4px 0 0;"></i> <span
+			style="color: #A1A1A1;">Trang chủ ></span><span
+			style="color: #3A3A3A; font-weight: 500; margin-left: 4px;">Đăng
+			ký khai sinh</span>
+	</div>
 	<div class="content">
-		<div class="nav">
-			<i class="fa-solid fa-house"
-				style="color: #A1A1A1; margin: 4px 4px 0 0;"></i> <span
-				style="color: #A1A1A1;">Trang chủ ></span><span
-				style="color: #3A3A3A; font-weight: 500; margin-left: 4px;">Đăng
-				ký khai sinh</span>
-		</div>
 		<c:if test="${error!=null}">
 			<div class="error">${error}</div>
 		</c:if>
@@ -36,12 +39,8 @@
 			<form action="khaisinh" method="post">
 				<div class="info">
 					<p class="info-title">Họ, chữ đệm, tên người yêu cầu:</p>
-					<input name="nguoiyeucau">
+					<input name="nguoidangky">
 				</div>
-				<!--                 <div class="info">
-                    <p class="info-title">Giấy tờ tùy thân:</p>
-                    <input>
-                </div> -->
 				<div class="info">
 					<p class="info-title">Quan hệ với người được khai sinh:</p>
 					<input name="quanHeNguoiKhaiSinh">
@@ -234,6 +233,9 @@
 		</div>
 	</div>
 
+	<div class="footer">
+		<%@ include file="footer.jsp"%>
+	</div>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"

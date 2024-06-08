@@ -162,5 +162,42 @@ public class NhanKhauRepository {
 		return false;
 	}
 	
+	public int countFromNhanKhaus() {
+		String query = "SELECT COUNT(*) FROM tbNhanKhau";
+		
+		try {
+			new DBConnect();
+			conn = DBConnect.getConnection();
+			ps = conn.prepareStatement(query);
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+	
+	public boolean deleteNhanKhau(String idNhanKhau) {
+		String query = "delete from tbNhanKhau where idNhanKhau = '" + idNhanKhau +"'";
+		
+		try {
+			new DBConnect();
+			conn = DBConnect.getConnection();
+			ps = conn.prepareStatement(query);
+			
+			ps.executeQuery();
+			return true;
+	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 
 }
