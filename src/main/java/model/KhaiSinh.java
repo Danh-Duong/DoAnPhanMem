@@ -5,6 +5,8 @@ import java.util.Date;
 public class KhaiSinh {
     private String maDangKiKhaiSinh;
     private String idHoKhau;
+    private String nguoiDangKy;
+    private Date ngayDangKy;
     private String hoTen;
     private Date ngaySinh;
     private String gioiTinh;
@@ -23,7 +25,7 @@ public class KhaiSinh {
     }
     
     
-	public KhaiSinh(String maDangKiKhaiSinh, String idHoKhau, String hoTen, Date ngaySinh, String gioiTinh,
+	public KhaiSinh(String maDangKiKhaiSinh, String idHoKhau,String nguoiDangKy, Date ngayDangKy ,String hoTen, Date ngaySinh, String gioiTinh,
 			String quocTich, String danToc, String noiSinh, String queQuan, String noiCuTru, String idNhanKhauCha,
 			String idNhanKhauMe, String quanHeNguoiKhaiSinh, String trangthai) {
 		super();
@@ -41,13 +43,17 @@ public class KhaiSinh {
 		this.idNhanKhauMe = idNhanKhauMe;
 		this.quanHeNguoiKhaiSinh = quanHeNguoiKhaiSinh;
 		this.trangThaiDuyet=trangthai;
+		this.ngayDangKy= ngayDangKy;
+		this.nguoiDangKy =  nguoiDangKy;
 	}
 
 
-	public KhaiSinh(String maDangKiKhaiSinh, String idHoKhau) {
+	public KhaiSinh(String maDangKiKhaiSinh, String idHoKhau, String nguoiDangKy, Date ngayDangKy) {
 		super();
 		this.maDangKiKhaiSinh = maDangKiKhaiSinh;
 		this.idHoKhau = idHoKhau;
+		this.nguoiDangKy = nguoiDangKy;
+		this.ngayDangKy = ngayDangKy;
 	}
 
 
@@ -66,6 +72,29 @@ public class KhaiSinh {
 	public String getHoTen() {
 		return hoTen;
 	}
+
+
+
+	public String getNguoiDangKy() {
+		return nguoiDangKy;
+	}
+
+
+	public void setNguoiDangKy(String nguoiDangKy) {
+		this.nguoiDangKy = nguoiDangKy;
+	}
+
+
+	public Date getNgayDangKy() {
+		return ngayDangKy;
+	}
+
+
+	public void setNgayDangKy(Date ngayDangKy) {
+		this.ngayDangKy = ngayDangKy;
+	}
+
+
 	public void setHoTen(String hoTen) {
 		this.hoTen = hoTen;
 	}

@@ -11,7 +11,7 @@
 <script src="https://kit.fontawesome.com/e3729928c9.js"
 	crossorigin="anonymous"></script>
 
-<title>Hồ sơ khai sinh</title>
+<title>Hồ sơ khai tử</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="css/report/bootstrap.min.css" rel="stylesheet">
@@ -40,11 +40,11 @@
 
 <body>
 
-			<jsp:include page="banner.jsp"></jsp:include>
+		<jsp:include page="banner.jsp"></jsp:include>
 
 		<div id="page-wrapper" style="min-height: 279px;">
 			<div class="container-fluid">
-				<h4 class="page-header">Hồ sơ đăng ký khai sinh
+				<h4 class="page-header">Hồ sơ đăng ký khai tử
 					(${slhoso})</h4>
 				<div style="width: 100%; height: 2px; background-color: #d19410;"></div>
 
@@ -75,13 +75,13 @@
 					<c:forEach items="${hoso}" var="hs" varStatus="loop">
 						<c:if test="${trangthai=='1'}">
 							<div class="alert alert-info" style="margin-top: 20px;">
-								${loop.index+1}. Mã hồ sơ: ${hs.maDangKiKhaiSinh} - Mã hộ khẩu:
-								${hs.idHoKhau} <a style="float: right;"
-									href="duyetKhaiSinh?mahs=${hs.maDangKiKhaiSinh}"
+								${loop.index+1}. Mã hồ sơ: ${hs.maKhaiTu} - Mã nhân khẩu:
+								${hs.idNhanKhau} <a style="float: right;"
+									href="duyetKhaiTu?mahs=${hs.maKhaiTu}"
 									class="alert-link"> Chi tiết</a>
 								<ul style="margin: 10px 0 0 0;">
-									<li>Người đăng ký: ${hs.nguoiDangKy}</li>
-									<li style="margin: 5px 0 0;">Ngày đăng ký: ${hs.ngayDangKy}</li>
+									<li>Người đăng ký: ${hs.hoTenNguoiKhai}</li>
+									<li style="margin: 5px 0 0;">Ngày đăng ký: ${hs.ngayDangKi}</li>
 								</ul>
 
 							</div>
@@ -89,28 +89,28 @@
 
 						<c:if test="${trangthai=='0'}">
 							<div class="alert alert-warning" style="margin-top: 20px;">
-								${loop.index+1}. Mã hồ sơ: ${hs.maDangKiKhaiSinh} - Mã hộ khẩu:
-								${hs.idHoKhau} <a style="float: right;"
-									href="duyetKhaiSinh?mahs=${hs.maDangKiKhaiSinh}"
+								${loop.index+1}. Mã hồ sơ: ${hs.maKhaiTu} - Mã nhân khẩu:
+								${hs.idNhanKhau} <a style="float: right;"
+									href="duyetKhaiTu?mahs=${hs.maKhaiTu}"
 									class="alert-link"> Chi tiết</a>
 								<ul style="margin: 10px 0 0 0;">
-									<li>Người đăng ký: ${hs.nguoiDangKy}</li>
+									<li>Người đăng ký: ${hs.hoTenNguoiKhai}</li>
 									<li style="margin: 5px 0 0;">Ngày đăng ký:
-										${hs.ngayDangKy}</li>
+										${hs.ngayDangKi}</li>
 								</ul>
 							</div>
 						</c:if>
 
 						<c:if test="${trangthai=='-1'}">
 							<div class="alert alert-danger" style="margin-top: 20px;">
-								${loop.index+1}. Mã hồ sơ: ${hs.maDangKiKhaiSinh} - Mã hộ khẩu:
-								${hs.idHoKhau} <a style="float: right;"
-									href="duyetKhaiSinh?mahs=${hs.maDangKiKhaiSinh}"
+								${loop.index+1}. Mã hồ sơ: ${hs.maKhaiTu} - Mã nhân khẩu:
+								${hs.idNhanKhau} <a style="float: right;"
+									href="duyetKhaiTu?mahs=${hs.maKhaiTu}"
 									class="alert-link"> Chi tiết</a>
 								<ul style="margin: 10px 0 0 0;">
-									<li>Người đăng ký: ${hs.nguoiDangKy}</li>
+									<li>Người đăng ký: ${hs.hoTenNguoiKhai}</li>
 									<li style="margin: 5px 0 0;">Ngày đăng ký:
-										${hs.ngayDangKy}</li>
+										${hs.ngayDangKi}</li>
 								</ul>
 							</div>
 						</c:if>
@@ -123,7 +123,7 @@
 						var selectedValue = selectElement.value;
 						console.log("Test: " + selectedValue);
 						$.ajax({
-							url : 'duyetKhaiSinh',
+							url : 'duyetKhaiTu',
 							type : 'GET',
 							data : {
 								trangthai : selectedValue

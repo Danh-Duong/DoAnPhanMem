@@ -18,7 +18,7 @@
 <main>
 	<nav>
 		<ul>
-			<li><a href="#"><i class="fa-solid fa-house-user fa-2x"></i></a></li>
+			<li><a href="http://localhost:8080/DoAnPhanMem"><i class="fa-solid fa-house-user fa-2x"></i></a></li>
 			<li><a href="#">THỦ TỤC HÀNH CHÍNH</a></li>
 			<li><a href="#">TRA CỨU HỒ SƠ</a></li>
 			<li><a href="#">NỘP HỒ SƠ TRỰC TUYẾN</a></li>

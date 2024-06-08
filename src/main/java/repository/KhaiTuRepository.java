@@ -10,6 +10,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.KhaiSinh;
 import model.KhaiTu;
 
 public class KhaiTuRepository {
@@ -139,6 +140,97 @@ public class KhaiTuRepository {
 	}
 	public boolean updateTrangthai(String mahs) {
 		String query = "update tbKHAITU set trangThaiDuyet = N'Đã duyệt' where maKhaiTu=N'" + mahs+"'";
+		try {
+			new DBConnect();
+			conn = DBConnect.getConnection();
+			ps = conn.prepareStatement(query);
+			ps.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public int countFromKhaiTus() {
+		String query = "SELECT COUNT(*) FROM tbKhaiTu";
+		
+		try {
+			new DBConnect();
+			conn = DBConnect.getConnection();
+			ps = conn.prepareStatement(query);
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+	
+	public int countKhaiTuByYear(int year) {
+		String query = "SELECT COUNT(*) FROM tbKhaiTu where year(ngayDangKi) = '" + year+"'";
+		
+		try {
+			new DBConnect();
+			conn = DBConnect.getConnection();
+			ps = conn.prepareStatement(query);
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+	
+	public List<KhaiTu> getDanhsachHoso(String trangthai) {
+		String query = "select * from tbKHAITU where trangThaiDuyet=N'"+ trangthai + "'";
+		List<KhaiTu> result = new ArrayList<KhaiTu>();
+		try {
+			new DBConnect();
+			conn = DBConnect.getConnection();
+			ps = conn.prepareStatement(query);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				result.add(new KhaiTu(
+						rs.getString(1),
+						rs.getString(2),
+						rs.getString(3),
+						rs.getString(4),
+						rs.getString(5),
+						new java.util.Date(rs.getDate(6).getTime()),
+						rs.getString(7),
+						rs.getString(8),
+						rs.getString(9),
+						rs.getString(10),
+						rs.getString(11),
+						new java.util.Date(rs.getDate(12).getTime()),
+						rs.getTime(13).toLocalTime(),
+						rs.getString(14),
+						rs.getString(15),
+						new java.util.Date(rs.getDate(16).getTime()),
+						rs.getString(17),
+						rs.getString(18)));
+			}
+			return result;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+	
+	public boolean updateTrangthai(String mahs, String trangthai) {
+		String query = "update tbKHAITU set trangThaiDuyet = N'" + trangthai + "' where maKhaiTu='" + mahs+"'";
 		try {
 			new DBConnect();
 			conn = DBConnect.getConnection();

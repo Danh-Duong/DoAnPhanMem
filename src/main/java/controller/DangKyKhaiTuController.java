@@ -25,6 +25,7 @@ import org.json.JSONObject;
 
 import model.KhaiTu;
 import repository.KhaiTuRepository;
+import utils.EmailUtils;
 
 @WebServlet("/khaitu")
 public class DangKyKhaiTuController extends HttpServlet {
@@ -113,8 +114,9 @@ public class DangKyKhaiTuController extends HttpServlet {
 
             if (result) {
                 // If saved successfully, redirect to the success notification page
+            	EmailUtils.sendEmail(request.getParameter("hoTenNguoiKhai"), "testdanh26@gmail.com", maKhaiTu, "khai tử");
                 request.setAttribute("madangky", maKhaiTu);
-                request.setAttribute("hoso", "khai sinh");
+                request.setAttribute("hoso", "khai tử");
                 request.getRequestDispatcher("DangkyThanhCong.jsp").forward(request, response);
             } else {
                 // If not successful, return to the registration page with an error message
