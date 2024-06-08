@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+footer {
+    font-family: Arial, sans-serif;
+    background-color: #FFFDD3;
+    width: 100%;
+    margin-top: 30px;
+    border-top: solid #FB0A0A 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.container img {
+    width: 150px;
+    height: 110px;
+}
+
+.container h1 {
+    font-size: 24px;
+    margin: 10px 0;
+    color: #FB0A0A;
+}
+
+.contact {
+    text-align: center;
+    width: 100%;
+}
+
+.contact p {
+    font-size: 14px;
+    margin: 5px 0;
+}

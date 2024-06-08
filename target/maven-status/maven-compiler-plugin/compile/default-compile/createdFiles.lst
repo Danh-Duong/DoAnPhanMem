@@ -1,0 +1,12 @@
+Dao\DaoInterface.class
+model\TamVang.class
+Servlet\TamVangServlet.class
+Dao\TamVangDAO.class
+model\NhanKhau.class
+Servlet\index.class
+Dao\HoKhauDAO.class
+Servlet\UserServlet.class
+Utils\HibernateUtil.class
+DoAnPhanMem\App.class
+Dao\NhanKhauDAO.class
+model\HoKhau.class

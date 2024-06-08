@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.HoKhau;
 import model.NhanKhau;
+import model.TamVang;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -23,45 +24,34 @@ import org.apache.commons.beanutils.converters.DateTimeConverter;
 
 import Dao.HoKhauDAO;
 import Dao.NhanKhauDAO;
+import Dao.TamVangDAO;
 
-/**
- * Servlet implementation class index_bai4
- */ 
 @WebServlet({ "/account/list", "/account/create", "/account/add", "/account/delete", "/account/edit/*",
-		"/account/update" })
+		"/account/update", "/account/tamvang" })
 public class index extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	List<NhanKhau> list = null;
 	ArrayList<HoKhau> hoKhaus = null;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public index() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String uri = request.getRequestURI();
-		NhanKhauDAO userDAO = new NhanKhauDAO();
+		NhanKhauDAO nhanKhauDAO = new NhanKhauDAO();
 		HoKhauDAO hoKhauDAO = new HoKhauDAO();
+		TamVangDAO tamVangDAO = new TamVangDAO();
 		HttpSession session = request.getSession();
 		NhanKhau user = new NhanKhau();
+
 		if (uri.contains("list")) {
-			list = userDAO.selectAll();
-			session.setAttribute("listUser", list);
+			session.setAttribute("listUser", nhanKhauDAO.selectAll());
 			session.setAttribute("listHoKhau", hoKhauDAO.selectAll());
 			getServletContext().getRequestDispatcher("/views/index.jsp").forward(request, response);
 		} else if (uri.contains("create")) {
 			try {
-				session.setAttribute("listUser", userDAO.selectAll());
+				session.setAttribute("listUser", nhanKhauDAO.selectAll());
 				session.setAttribute("listHoKhau", hoKhauDAO.selectAll());
 				getServletContext().getRequestDispatcher("/views/form.jsp").forward(request, response);
 			} catch (Exception e) {
@@ -81,7 +71,7 @@ public class index extends HttpServlet {
 
 				Date ngaySinh = convertStringToDate((request.getParameter("ngaySinh")));
 				user.setNgaySinh(ngaySinh);
-				userDAO.insert(user);
+				nhanKhauDAO.insert(user);
 				request.setAttribute("mess", "Tạo thành công");
 				getServletContext().getRequestDispatcher("/views/form.jsp").forward(request, response);
 			} catch (Exception e) {
@@ -90,7 +80,7 @@ public class index extends HttpServlet {
 		} else if (uri.contains("delete")) {
 			try {
 				BeanUtils.populate(user, request.getParameterMap());
-				userDAO.delete(user);
+				nhanKhauDAO.delete(user);
 				response.sendRedirect(request.getContextPath() + "/account/list");
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -98,12 +88,11 @@ public class index extends HttpServlet {
 		} else if (uri.contains("edit")) {
 			try {
 				BeanUtils.populate(user, request.getParameterMap());
-				user = userDAO.selectById(user);
+				user = nhanKhauDAO.selectById(user);
 				session.setAttribute("edit", user);
 				getServletContext().getRequestDispatcher("/views/form.jsp").forward(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
-				// TODO: handle exception
 			}
 		} else if (uri.contains("update")) {
 			try {
@@ -117,21 +106,39 @@ public class index extends HttpServlet {
 				exist.setIdHoKhau(idHoKhau);
 				HoKhau hoKhau = hoKhauDAO.selectById(exist);
 				user.setHoKhau(hoKhau);
-				userDAO.update(user);
+				nhanKhauDAO.update(user);
 				response.sendRedirect(request.getContextPath() + "/account/list");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (uri.contains("tamvang")) {
+			try {
+				TamVang tamVang = new TamVang();
+				if (request.getParameter("maTamVang") != null) {
+					String dateStr = request.getParameter("ngayDangKi");
+					Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dateStr);
+					DateTimeConverter dtc = new DateConverter(date);
+					ConvertUtils.register(dtc, Date.class);
+					
+					BeanUtils.populate(tamVang, request.getParameterMap());
+					String idNhanKhau = request.getParameter("idNhanKhau");
+					NhanKhau exist = new NhanKhau();
+					exist.setIdNhanKhau(idNhanKhau);
+					NhanKhau nhanKhau = nhanKhauDAO.selectById(exist);
+					tamVang.setNhanKhau(nhanKhau);
+					tamVangDAO.insert(tamVang);
+					request.setAttribute("mess", "Gửi thành công");
+				}
+				session.setAttribute("listNhanKhau", nhanKhauDAO.selectAll());
+				getServletContext().getRequestDispatcher("/views/tamvang.jsp").forward(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
@@ -139,5 +146,4 @@ public class index extends HttpServlet {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		return formatter.parse(dateString);
 	}
-
 }

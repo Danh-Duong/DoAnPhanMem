@@ -15,7 +15,7 @@
     <servlet-name>UserServlet</servlet-name>
     <servlet-class>DoAnPhanMem_Demo.UserServlet</servlet-class>
   </servlet>
-  <servlet-mapping>
+<!--  <servlet-mapping>
     <servlet-name>UserServlet</servlet-name>
     <url-pattern>/UserServlet</url-pattern>
   </servlet-mapping>
@@ -28,5 +28,15 @@
   <servlet-mapping>
     <servlet-name>index_bai4</servlet-name>
     <url-pattern>/index_bai4</url-pattern>
-  </servlet-mapping>
+  </servlet-mapping>-->
+<!--  <servlet>
+    <description></description>
+    <display-name>TamVangController</display-name>
+    <servlet-name>TamVangController</servlet-name>
+    <servlet-class>Servlet.TamVangController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TamVangController</servlet-name>
+    <url-pattern>/TamVangController</url-pattern>
+  </servlet-mapping>-->
 </web-app>
