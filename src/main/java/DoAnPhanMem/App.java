@@ -3,11 +3,8 @@ package DoAnPhanMem;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 import Dao.NhanKhauDAO;
-import Utils.HibernateUtil;
 import model.NhanKhau;
 
 /**

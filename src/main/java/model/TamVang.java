@@ -1,36 +1,18 @@
 package model;
 
 import java.util.Date;
-import jakarta.persistence.*;
 
-@Entity
-@Table(name = "tbTAMVANG")
 public class TamVang {
 
-	@Id
-	@Column(name = "maTamVang")
 	private String maTamVang;
 
-	@Column(name = "ngayDangKi")
 	private Date ngayDangKi;
 
-	@Column(name = "diaChiDen")
 	private String diaChiDen;
-
-	@Column(name = "lyDo")
 	private String lyDo;
-
-	@ManyToOne
-	@JoinColumn(name = "idNhanKhau")
 	private NhanKhau nhanKhau;
-
-	@Column(name = "ngayBatDau")
 	private Date ngayBatDau;
-
-	@Column(name = "ngayKetThuc")
 	private Date ngayKetThuc;
-
-	@Column(name = "trangThaiDuyet")
 	private String trangThaiDuyet;
 
 	public String getMaTamVang() {

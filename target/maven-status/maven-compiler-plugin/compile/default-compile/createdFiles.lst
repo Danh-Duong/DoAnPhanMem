@@ -5,8 +5,7 @@ Dao\TamVangDAO.class
 model\NhanKhau.class
 Servlet\index.class
 Dao\HoKhauDAO.class
-Servlet\UserServlet.class
-Utils\HibernateUtil.class
+Utils\jdbcHelper.class
 DoAnPhanMem\App.class
 Dao\NhanKhauDAO.class
 model\HoKhau.class

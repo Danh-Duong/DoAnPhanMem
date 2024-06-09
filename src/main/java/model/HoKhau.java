@@ -2,29 +2,18 @@ package model;
 
 import java.util.Date;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "tbHOKHAU")
 public class HoKhau {
 
-    @Id
-    @Column(name = "idHoKhau")
     private String idHoKhau;
 
-    @Column(name = "diaChiThuongTru")
     private String diaChiThuongTru;
 
-    @Column(name = "ngayDangKi")
     private Date ngayDangKi;
 
-    @Column(name = "trangThai")
     private String trangThai;
 
-    @Column(name = "soLuong")
     private int soLuong;
 
-    @Column(name = "ghiChu", columnDefinition = "nvarchar(MAX)")
     private String ghiChu;
 
 	public String getIdHoKhau() {

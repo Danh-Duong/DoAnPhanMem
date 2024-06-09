@@ -4,14 +4,16 @@ import java.util.List;
 
 import model.NhanKhau;
 
-public interface DaoInterface<T> {
-	public List<T> selectAll();
+public interface DaoInterface<Entity, DataType> {
+	public void insert(Entity entity);
 
-	public T selectById(T t);
+	public int update(Entity entity);
 
-	public boolean insert(T t);
+	public int delete(DataType id);
 
-	public boolean delete(T t);
+	public Entity selectById(DataType id);
 
-	public boolean update(T t);
+	public java.util.List<Entity> selectAll();
+
+	public java.util.List<Entity> selectBySQL(String sql, Object... arr);
 }

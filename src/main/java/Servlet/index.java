@@ -65,14 +65,11 @@ public class index extends HttpServlet {
 				ConvertUtils.register(dtc, Date.class);
 				String idHoKhau = request.getParameter("idHoKhau");
 				BeanUtils.populate(user, request.getParameterMap());
-				HoKhau hoKhau = new HoKhau();
-				hoKhau.setIdHoKhau(idHoKhau);
-				user.setHoKhau(hoKhauDAO.selectById(hoKhau));
-
+				user.setHoKhau(hoKhauDAO.selectById(idHoKhau));
 				Date ngaySinh = convertStringToDate((request.getParameter("ngaySinh")));
 				user.setNgaySinh(ngaySinh);
 				nhanKhauDAO.insert(user);
-				request.setAttribute("mess", "T·∫°o th√†nh c√¥ng");
+				request.setAttribute("mess", "T?o th‡nh cÙng");
 				getServletContext().getRequestDispatcher("/views/form.jsp").forward(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -80,7 +77,7 @@ public class index extends HttpServlet {
 		} else if (uri.contains("delete")) {
 			try {
 				BeanUtils.populate(user, request.getParameterMap());
-				nhanKhauDAO.delete(user);
+				nhanKhauDAO.delete(user.getIdNhanKhau());
 				response.sendRedirect(request.getContextPath() + "/account/list");
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -88,7 +85,7 @@ public class index extends HttpServlet {
 		} else if (uri.contains("edit")) {
 			try {
 				BeanUtils.populate(user, request.getParameterMap());
-				user = nhanKhauDAO.selectById(user);
+				user = nhanKhauDAO.selectById(user.getIdNhanKhau());
 				session.setAttribute("edit", user);
 				getServletContext().getRequestDispatcher("/views/form.jsp").forward(request, response);
 			} catch (Exception e) {
@@ -102,9 +99,7 @@ public class index extends HttpServlet {
 				ConvertUtils.register(dtc, Date.class);
 				BeanUtils.populate(user, request.getParameterMap());
 				String idHoKhau = request.getParameter("idHoKhau");
-				HoKhau exist = new HoKhau();
-				exist.setIdHoKhau(idHoKhau);
-				HoKhau hoKhau = hoKhauDAO.selectById(exist);
+				HoKhau hoKhau = hoKhauDAO.selectById(idHoKhau);
 				user.setHoKhau(hoKhau);
 				nhanKhauDAO.update(user);
 				response.sendRedirect(request.getContextPath() + "/account/list");
@@ -122,12 +117,10 @@ public class index extends HttpServlet {
 					
 					BeanUtils.populate(tamVang, request.getParameterMap());
 					String idNhanKhau = request.getParameter("idNhanKhau");
-					NhanKhau exist = new NhanKhau();
-					exist.setIdNhanKhau(idNhanKhau);
-					NhanKhau nhanKhau = nhanKhauDAO.selectById(exist);
+					NhanKhau nhanKhau = nhanKhauDAO.selectById(idNhanKhau);
 					tamVang.setNhanKhau(nhanKhau);
 					tamVangDAO.insert(tamVang);
-					request.setAttribute("mess", "G·ª≠i th√†nh c√¥ng");
+					request.setAttribute("mess", "?„ g?i th‡nh cÙng");
 				}
 				session.setAttribute("listNhanKhau", nhanKhauDAO.selectAll());
 				getServletContext().getRequestDispatcher("/views/tamvang.jsp").forward(request, response);

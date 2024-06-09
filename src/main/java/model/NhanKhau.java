@@ -2,72 +2,46 @@ package model;
 
 import java.util.Date;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "tbNHANKHAU")
 public class NhanKhau {
 
-	@Id
-	@Column(name = "idNhanKhau")
 	private String idNhanKhau;
 
-	@ManyToOne
-	@JoinColumn(name = "idHoKhau")
 	private HoKhau hoKhau;
 
-	@Column(name = "tenCongDan")
 	private String tenCongDan;
 
-	@Column(name = "cccd")
 	private String cccd;
 
-	@Column(name = "ngaySinh")
 	private Date ngaySinh;
 
-	@Column(name = "email")
 	private String email;
 
-	@Column(name = "gioiTinh")
 	private String gioiTinh;
 
-	@Column(name = "sdt")
 	private String sdt;
 
-	@Column(name = "diaChiThuongTru")
 	private String diaChiThuongTru;
 
-	@Column(name = "noiOHienTai")
 	private String noiOHienTai;
 
-	@Column(name = "noiSinh")
 	private String noiSinh;
 
-	@Column(name = "quanHe")
 	private String quanHe;
 
-	@Column(name = "quocTich")
 	private String quocTich;
 
-	@Column(name = "danToc")
 	private String danToc;
 
-	@Column(name = "ngheNghiep")
 	private String ngheNghiep;
 
-	@Column(name = "tinhTrangCuTru")
 	private String tinhTrangCuTru;
 
-	@Column(name = "tinhTrangHocVan")
 	private String tinhTrangHocVan;
 
-	@Column(name = "tinhTrangHonNhan")
 	private String tinhTrangHonNhan;
 
-	@Column(name = "ngayCapNhat")
 	private Date ngayCapNhat;
 
-	@Column(name = "ghiChu", columnDefinition = "nvarString(MAX)")
 	private String ghiChu;
 
 	public NhanKhau() {
