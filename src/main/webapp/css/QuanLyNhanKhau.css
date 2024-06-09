@@ -1,0 +1,21 @@
+@charset "UTF-8";
+body{
+	margin:0;
+	padding:0;
+}
+#add{
+	background-color:#FFFDD3;
+	color:#FB0A0A;
+	margin-top:30px;
+}
+ .sys-button {
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            width: 50%; /* You can adjust this value as needed */
+        }
+        .sub-button {
+            flex: 1;
+            margin: 0 10px; /* Adds spacing between buttons */
+            height:50px;	
+        }
