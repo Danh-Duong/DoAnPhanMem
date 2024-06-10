@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Phường Thanh Khê Tây</title>
+<title>Phường Thanh Binh</title>
 <link rel="stylesheet" href="css/index/grid.css">
 <link rel="stylesheet" href="css/index/main.css">
 <link rel="stylesheet" href="css/index/responsive.css">
