@@ -100,10 +100,11 @@
 					<ul class="nav nav-second-level">
 						<li><a href="duyetKhaiSinh">Đăng ký khai sinh</a></li>
 						<li><a href="duyetKhaiTu">Đăng ký khai tử</a></li>
+						<li><a href="duyetTamVang">Đăng ký tạm vắng</a></li>
 					</ul> <!-- /.nav-second-level --></li>
 				<li><a href="hokhau"><i class="fa-solid fa-people-roof"
 						style="color: #337ab7; margin: 0 4px;"></i> Hộ khẩu</a></li>
-				<li><a href="catalogs"><i class="fa-solid fa-user"
+				<li><a href="nhankhau"><i class="fa-solid fa-user"
 						style="color: #337ab7; margin: 0 7px;"></i> Nhân khẩu</a></li>
 				<li><a href="taikhoan"><i class="fa-solid fa-user"
 						style="color: #337ab7; margin: 0 7px;"></i> Tài khoản</a></li>

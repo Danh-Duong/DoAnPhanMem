@@ -15,24 +15,22 @@
 	<div class="header_top_right">
 
 		<c:if test="${cookie.cccd != null}">
-			<div class="login-check">
+			<div class="login-check" style="width:190px; border-radius: 38px">
 				<i style="font-size: 30px" class="fa-solid fa-circle-user"></i>
-				<p style="margin: 0 0 0 5px">Dương Ngọc Danh</p>
-				
-				<div class="login-menu">
-					<p>Hồ sơ</p>
-						<p>Đăng xuất</p>
-						
-					
+				<p style="margin: 0 0 0 5px">${cookie.cccd.value}</p>
+
+				<div class="login-menu" style="z-index: 99999;">
+					<a href="#"><p>Hồ sơ</p></a>
+					<a href="logout"><p>Đăng xuất</p></a>
 				</div>
 			</div>
 
 		</c:if>
 
 		<c:if test="${cookie.cccd == null}">
-			<a class="login" href="#"><i style="margin-right: 6px"
+			<a class="login" href="login"><i style="margin-right: 6px"
 				class="fa-solid fa-right-to-bracket"></i>ĐĂNG NHẬP</a>
-			<a class="signup" href="#"><i style="margin-right: 6px"
+			<a class="signup" href="register"><i style="margin-right: 6px"
 				class="fa fa-user"></i>ĐĂNG KÍ</a>
 		</c:if>
 

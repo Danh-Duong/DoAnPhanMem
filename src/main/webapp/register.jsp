@@ -15,7 +15,7 @@
 <body>
 	<form action="register" method="post">
 		<div class="container">
-			<h1>ĐĂNG KÝ TÀI KHOẢN</h1>
+			<h1>ĐĂNG KÝ</h1>
 			<div class="input-group">
 				<i class="fa-regular fa-id-card icon"></i> <input type="text"
 					placeholder="Số CMND/CCCD" name="cccd">
@@ -43,7 +43,7 @@
 					placeholder="Mã OTP" name="otp">
 			</div>
 			<div class="action">
-				<button class="btn">Quay lại</button>
+				<button class="btn" type="button" onclick="back()">Quay lại</button>
 				<button type="submit" class="btn" style="background-color: #2765ab;">Đăng
 					ký</button>
 			</div>
@@ -72,6 +72,10 @@
 					// Xử lý lỗi ở đây
 				}
 			});
+		}
+		
+		function back() {
+			window.location.href = "login";
 		}
 	</script>
 </body>

@@ -30,11 +30,17 @@
                 Bạn sẽ nhận được thông báo của cơ quan ủy ban phường Thanh Bình qua email.
             </p>
             <div class="action">
-                <button class="home">Về trang chủ</button>
+                <button class="home" onclick="home()">Về trang chủ</button>
             </div>
         </div>
 
     </div>
+    
+    <script>
+    	function home() {
+			window.location.href = "http://localhost:8080/DoAnPhanMem/";
+		}
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"

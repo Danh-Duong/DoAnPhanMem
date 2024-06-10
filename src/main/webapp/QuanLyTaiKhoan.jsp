@@ -159,6 +159,7 @@
 													<script>		
 			
 			function deleteTk(matk) {
+				if(window.confirm('Bạn có chắc chắc xóa tài khoản ' + matk + ' ?')){
 		        // Gửi yêu cầu xóa khách hàng bằng AJAX
 		        $.ajax({
 		            url: "taikhoan",
@@ -173,10 +174,11 @@
 		                // Xử lý lỗi nếu có
 		            }
 		        });
+				}
 		    }
 
 		    function updateTk(matk, checked) {
-		    	console.log("Danh: " + matk);
+		    	if(window.confirm('Bạn có chắc chắc cập nhập tài khoản ' + matk + ' ?')){
 		        var type = checked ? 1 : 0;
 		        // Gửi yêu cầu cập nhật trạng thái của khách hàng bằng AJAX
 		        $.ajax({
@@ -190,6 +192,7 @@
 		                // Xử lý lỗi nếu có
 		            }
 		        });
+		    	}
 		    }
 			
 			

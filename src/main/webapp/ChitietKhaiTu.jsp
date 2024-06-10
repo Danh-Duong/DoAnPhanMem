@@ -139,7 +139,7 @@
 								<div class="row">
 									<div class="col-md-12">
 										<p class="info-title1">Nơi mất</p>
-										<input class="info-value" name="noiMat" value="${khaitu.noiDangKi}">
+										<input class="info-value" name="noiMat" value="${khaitu.noiCuTruCuoiCung}">
 									</div>
 								</div>
 								<div class="row">
