@@ -116,3 +116,23 @@ input[type="date"] {
     text-align: center;
     margin: 10px 0;
 }
+/*---------------tamtru-----------*/
+.radio-select {
+            padding: 20px; /* Tùy chỉnh khoảng cách xung quanh */
+        }
+
+        .radio-select p {
+            margin-bottom: 0px; /* Khoảng cách dưới tiêu đề */
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center; /* Căn giữa theo chiều dọc */
+            margin-bottom: 10px; /* Khoảng cách giữa các radio item */
+        }
+
+        .radio-item input[type="radio"] {
+            margin-right: 10px;
+            width:30px;
+            height:30px; /* Khoảng cách giữa input và label */
+        }
