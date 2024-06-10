@@ -3,22 +3,46 @@
 <link rel="stylesheet" href="css/style_header.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<script src="https://kit.fontawesome.com/e3729928c9.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/e3729928c9.js"
+	crossorigin="anonymous"></script>
 <header>
 	<div class="logo">
 		<img src="img/logo.png" />
-		<h1 style="margin-bottom: 10px;">QUẢN LÝ NHÂN KHẨU, HỘ GIA ĐÌNH PHƯỜNG THANH BÌNH</h1>
+		<h1 style="margin-bottom: 10px;">QUẢN LÝ NHÂN KHẨU, HỘ GIA ĐÌNH
+			PHƯỜNG THANH BÌNH</h1>
 	</div>
 
 	<div class="header_top_right">
-		<a class="login" href="#"><i style="margin-right: 6px" class="fa-solid fa-right-to-bracket"></i>ĐĂNG NHẬP</a> <a
-			class="signup" href="#"><i style="margin-right: 6px" class="fa fa-user"></i>ĐĂNG KÍ</a>
+
+		<c:if test="${cookie.cccd != null}">
+			<div class="login-check">
+				<i style="font-size: 30px" class="fa-solid fa-circle-user"></i>
+				<p style="margin: 0 0 0 5px">Dương Ngọc Danh</p>
+				
+				<div class="login-menu">
+					<p>Hồ sơ</p>
+						<p>Đăng xuất</p>
+						
+					
+				</div>
+			</div>
+
+		</c:if>
+
+		<c:if test="${cookie.cccd == null}">
+			<a class="login" href="#"><i style="margin-right: 6px"
+				class="fa-solid fa-right-to-bracket"></i>ĐĂNG NHẬP</a>
+			<a class="signup" href="#"><i style="margin-right: 6px"
+				class="fa fa-user"></i>ĐĂNG KÍ</a>
+		</c:if>
+
 	</div>
 </header>
 <main>
 	<nav>
 		<ul>
-			<li><a href="http://localhost:8080/DoAnPhanMem"><i class="fa-solid fa-house-user fa-2x"></i></a></li>
+			<li><a href="http://localhost:8080/DoAnPhanMem"><i
+					class="fa-solid fa-house-user fa-2x"></i></a></li>
 			<li><a href="#">THỦ TỤC HÀNH CHÍNH</a></li>
 			<li><a href="#">TRA CỨU HỒ SƠ</a></li>
 			<li><a href="#">NỘP HỒ SƠ TRỰC TUYẾN</a></li>

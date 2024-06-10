@@ -2,6 +2,7 @@ package utils;
 
 import java.util.Base64;
 import java.util.Hashtable;
+import java.util.Random;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -28,8 +29,6 @@ public class CookieUtils {
         return gson.fromJson(json, clazz);
     }
     
-   
-    
     public static void deleteCookieByName(HttpServletResponse response, String cookie) {
 		Cookie cookieCart = new Cookie(cookie, "");
 		cookieCart.setMaxAge(0);
@@ -48,6 +47,12 @@ public class CookieUtils {
 		return null;
     }
     
+    public static void addCookie(HttpServletResponse response, String key, String value) {
+    	Cookie u = new Cookie(key, value);
+		u.setMaxAge(3600);
+		response.addCookie(u);
+    }
+    
     public static void updateCookieByName(HttpServletRequest request, HttpServletResponse response, String cookie, String value) {
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {
@@ -59,6 +64,18 @@ public class CookieUtils {
                 }
             } 
         }
+    }
+    
+    public static String generateRandomString(int length) {
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < length; i++) {
+            int digit = random.nextInt(10); // Sinh số ngẫu nhiên từ 0 đến 9
+            sb.append(digit);
+        }
+
+        return sb.toString();
     }
     
     
