@@ -31,7 +31,7 @@
 		</div>
 		<div>
 			<h3 class="title">TỜ KHAI ĐĂNG KÍ TẠM TRÚ</h3>
-			<form action="tamvang" method="post">
+			<form action="DangKyTamTru" method="post">
 				<div class="section">
 				<div class="info-detail">
                     <p class="subtitle">CƠ QUAN THỰC HIỆN</p>

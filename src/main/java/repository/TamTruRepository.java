@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import model.TamTru;
 
 public class TamTruRepository {
 	Connection conn = null;
@@ -37,4 +38,16 @@ public class TamTruRepository {
 		}
 		return null;
 	}
+
+    public Object getDanhsachHoso(String tt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public TamTru getHosoById(String mahs) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void updateTrangthai(String mahs, String ?ã_duy?t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

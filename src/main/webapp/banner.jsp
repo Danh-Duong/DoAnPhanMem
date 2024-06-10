@@ -101,6 +101,7 @@
 						<li><a href="duyetKhaiSinh">Đăng ký khai sinh</a></li>
 						<li><a href="duyetKhaiTu">Đăng ký khai tử</a></li>
 						<li><a href="duyetTamVang">Đăng ký tạm vắng</a></li>
+                                                <li><a href="duyetTamTru">Đăng ký tạm trú</a></li>
 					</ul> <!-- /.nav-second-level --></li>
 				<li><a href="hokhau"><i class="fa-solid fa-people-roof"
 						style="color: #337ab7; margin: 0 4px;"></i> Hộ khẩu</a></li>

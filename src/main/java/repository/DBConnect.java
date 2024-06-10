@@ -9,9 +9,9 @@ public class DBConnect {
 		Connection c = null;
 		try {
 			DriverManager.registerDriver(new com.microsoft.sqlserver.jdbc.SQLServerDriver());
-			String url = "jdbc:sqlserver://localhost:1433;DatabaseName=dbQUANLYNHANKHAU;encrypt=true;trustServerCertificate=true";
+			String url = "jdbc:sqlserver://DESKTOP-EJCDLG2\\SQLEXPRESS;databaseName=dbNHANKHAU";
 			String username = "sa";
-			String password = "Danh2652003";
+			String password = "123456";
 			
 			c = DriverManager.getConnection(url, username, password);
 		} catch (SQLException e) {
