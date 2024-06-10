@@ -350,9 +350,8 @@
 											</tbody>
 										</table>
 										<div class="sys-button" >
-											<button class="sub-button" style="background-color:#259984;color:#fff;">Xem chi tiết</button>
+											<button class="sub-button" style="background-color:#259984;color:#fff;" onclick="window.location.href='ChiTietNhanKhau.jsp'">Xem chi tiết</button>
 											<button class="sub-button" style="background-color:#C41C1C;color:#fff;">Khóa</button>
-											<button class="sub-button"style="background-color:#1CC423;color:#fff;">Cập nhật</button>
 										</div>
 										<div style="text-align: center;">
 											<c:forEach var="pageNumber" begin="1" end="${totalPages}">
