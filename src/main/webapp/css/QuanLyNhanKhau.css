@@ -1,0 +1,31 @@
+@charset "UTF-8";
+body{
+	margin:0;
+	padding:0;
+}
+#add{
+	background-color:#FFFDD3;
+	color:#FB0A0A;
+	margin-top:30px;
+}
+ .sys-button {
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            width: 30%; /* You can adjust this value as needed */
+        }
+        .sub-button {
+            flex: 1;
+            margin: 0 10px;
+            width:100px; /* Adds spacing between buttons */
+            height:50px;	
+            border-radius:20px;
+             cursor: pointer;
+   			 transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out; /* Smooth transition for the effect */
+}
+
+.sub-button:active {
+    transform: scale(0.95); /* Scale down the button */
+    box-shadow: 0 5px #666; /* Add shadow effect */
+    transform: translateY(4px); /* Move the button slightly down */
+}
