@@ -130,7 +130,7 @@
 				<div class="row">
 							<div class="col-md-12">
 								<p class="info-title1">Họ tên :</p>
-								<input class="info-value" name="tenCongDan">
+								<input type="text" class="info-value" name="tenCongDan" >
 							</div>
 						</div>
                     <div class="row">
@@ -146,7 +146,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<p class="info-title1">Quan hệ với chủ hộ:</p>
-								<input class="info-value" name="quanHe">
+								<input type="text" class="info-value" name="quanHe">
 							</div>
 						</div>
 						<div class="row">
@@ -185,31 +185,31 @@
 						<div class="row">
 							<div class="col-md-12">
 								<p class="info-title1">Nơi ở hiện tại:</p>
-								<input class="info-value" name="noiOHienTai">
+								<input class="info-value" name="noiOHienTai" type="text">
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-12">
 								<p class="info-title1">Quê quán:</p>
-								<input class="info-value" name="noiSinh">
+								<input class="info-value" name="noiSinh" type="text">
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-12">
 								<p class="info-title1">Trình độ học vấn:</p>
-								<input class="info-value" name="tinhTrangHocVan">
+								<input class="info-value" name="tinhTrangHocVan" type="text">
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-12">
 								<p class="info-title1">Tình trạng hôn nhân:</p>
-								<input class="info-value" name="tinhTrangHonNhan">
+								<input class="info-value" name="tinhTrangHonNhan" type="text">
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-12">
 								<p class="info-title1">Nghề nghiệp:</p>
-								<input class="info-value" name="ngheNghiep">
+								<input class="info-value" name="ngheNghiep" type="text">
 							</div>
 						</div>
                 </div>
@@ -233,12 +233,14 @@
                 </form>
                 
                 </div>
+                <div class="sys-button">
+                <button class="sub-button" onclick="window.location.href='QuanLyNhanKhau.jsp'" style="background-color:#F49560">Trở về</button>
+                <button class="sub-button" onclick="" style="background-color:#049323">Lưu</button>
+                </div>
+                </div>
                 
                 </div>
-                </div>
-                <div class="sys-button">
-                <button class="sub-button" onclick="window.location.href='QuanLyNhanKhau.jsp'">Trở về</button>
-                </div>
+                
 					
 
 </body>
