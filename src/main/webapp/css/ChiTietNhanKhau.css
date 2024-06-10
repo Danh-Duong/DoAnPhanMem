@@ -1,11 +1,11 @@
 body{
-
+	
 	margin-bottom:70px;
 	padding:0;
 }
-#page-wrapper{
-	width:60%;
-	margin: auto;
+.container-fluid{
+	margin:50px auto 0;
+	width:70%;
 	
 }
 .title-img{
@@ -44,6 +44,7 @@ input[type="file"] {
     height: 33px;
     font-size: 14px !important;
 }
+
 
 .row1{
 	  margin: auto;
@@ -133,20 +134,20 @@ input[type="date"] {
     margin: 10px 0;
 }
  .sys-button {
-            margin: auto;
+            margin:30px auto 30px;
             display: flex;
             justify-content: space-between;
-            width: 25%; /* You can adjust this value as needed */
+            width: 30%; /* You can adjust this value as needed */
         }
         .sub-button {
             flex: 1;
-            margin-top: 30px; /* Adds spacing between buttons */
+            margin: 0 10px;
+            width:100px; /* Adds spacing between buttons */
             height:50px;	
-            border:solid black 1px;
-            border-radius:10px;
-            background-color:#F49560;
-           cursor: pointer;
-    transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out; /* Smooth transition for the effect */
+            color:#fff;
+            border-radius:20px;
+             cursor: pointer;
+   			 transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out; /* Smooth transition for the effect */
 }
 
 .sub-button:active {
