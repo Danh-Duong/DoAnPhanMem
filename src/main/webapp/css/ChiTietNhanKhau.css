@@ -16,13 +16,25 @@ body{
 }
 
 img {
-	width:200px;
-	height:200px;
-	margin-bottom:20px;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 20px;
+    border-radius: 50%; /* Làm tròn hình ảnh */
+    border: 2px solid #3691a2; /* Đặt viền cho hình ảnh */
+    object-fit: cover; /* Hiển thị hình ảnh toàn bộ */
 }
 h1{
 	margin: 0 auto;
 	
+}
+.title-img {
+    position: relative;
+}
+
+#avatar-upload {
+    display: block;
+    margin: auto;
+    margin-top: 10px; /* Khoảng cách giữa nút upload và hình ảnh */
 }
 .subtitle{
 	padding-top:10px;
@@ -43,14 +55,16 @@ select,
 input[type="file"] {
     height: 33px;
     font-size: 14px !important;
+    border:none !important;
+    margin-bottom:10px;
 }
 
 
-.row1{
-	  margin: auto;
-      display: flex;
-      justify-content: space-between;
-      
+.row1 {
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Cho phép các cột chuyển xuống hàng nếu không vừa với màn hình */
 }
 
 .info-title {
@@ -64,7 +78,7 @@ input[type="file"] {
     padding: 5px 15px 18px;
 }
 
-.info-value {}
+
 
 .info-title1 {
  
@@ -154,4 +168,8 @@ input[type="date"] {
     transform: scale(0.95); /* Scale down the button */
     box-shadow: 0 5px #666; /* Add shadow effect */
     transform: translateY(4px); /* Move the button slightly down */
+}
+
+.form-select {
+    width: 100%; /* Đảm bảo các select box rộng bằng input */
 }
