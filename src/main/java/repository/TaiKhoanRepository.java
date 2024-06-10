@@ -135,4 +135,44 @@ public class TaiKhoanRepository {
 
 		return null;
 	}
+	
+	public TaiKhoan getTkByCccdAndMk(String cccd, String mk) {
+		String query = "select * from tbTAIKHOAN where cccd = '" + cccd +"' and matKhau='" + mk +"'";
+		
+		try {
+			new DBConnect();
+			conn = DBConnect.getConnection();
+			ps = conn.prepareStatement(query);
+			
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				return new TaiKhoan(cccd, mk, rs.getString(3), rs.getBoolean(4), new java.util.Date(rs.getDate(5).getTime()), rs.getString(6),rs.getString(7));
+			}
+	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	public TaiKhoan getTkByEmail(String email) {
+		String query = "select * from tbTAIKHOAN where email = '" + email +"'";
+		
+		try {
+			new DBConnect();
+			conn = DBConnect.getConnection();
+			ps = conn.prepareStatement(query);
+			
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				return new TaiKhoan(rs.getString(1), rs.getString(2), rs.getString(3), rs.getBoolean(4), new java.util.Date(rs.getDate(5).getTime()), rs.getString(6),rs.getString(7));
+			}
+	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 }

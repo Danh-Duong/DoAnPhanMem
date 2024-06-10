@@ -67,7 +67,7 @@
 									</div>
 								</div>
 							</div>
-							<a href="products">
+							<a href="hokhau">
 								<div class="panel-footer">
 									<span class="pull-left">View Details</span> <span
 										class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -91,7 +91,7 @@
 									</div>
 								</div>
 							</div>
-							<a href="catalogs">
+							<a href="nhankhau">
 								<div class="panel-footer">
 									<span class="pull-left">View Details</span> <span
 										class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -115,7 +115,7 @@
 									</div>
 								</div>
 							</div>
-							<a href="bills">
+							<a href="duyetKhaiSinh">
 								<div class="panel-footer">
 									<span class="pull-left">View Details</span> <span
 										class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -138,7 +138,7 @@
 									</div>
 								</div>
 							</div>
-							<a href="customers">
+							<a href="duyetKhaiTu">
 								<div class="panel-footer">
 									<span class="pull-left">View Details</span> <span
 										class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

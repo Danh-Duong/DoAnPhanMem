@@ -3,60 +3,55 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Đăng ký tài khoản</title>
 <script src="https://kit.fontawesome.com/e3729928c9.js"
 	crossorigin="anonymous"></script>
-<link rel="stylesheet" href="css/resetPass.css">
+<link rel="stylesheet" href="css/register.css">
 </head>
 
 <body>
-	<div class="container">
-		<h1>QUÊN MẬT KHẨU</h1>
-		<form action="reset-pass" method="post">
+	<form action="login" method="post">
+		<div class="container">
+			<h1>ĐĂNG NHẬP</h1>
 			<div class="input-group">
 				<i class="fa-regular fa-id-card icon"></i> <input type="text"
-					id="cccd" placeholder="Số CMND/CCCD" name="cccd">
+					placeholder="Số CMND/CCCD" name="cccd">
 			</div>
-			<div style="text-align: right;">
-				<button type="button" class="otp" onclick="getOTP()">Gửi
-					OTP</button>
-			</div>
-
+			
 			<div class="input-group">
-				<i class="fa-solid fa-lock icon"></i> <input name="otp" type="text"
-					placeholder="Mã OTP">
+				<i class="fa-solid fa-key icon"></i> <input type="password"
+					placeholder="Mật khẩu" name="mk">
 			</div>
-			<div class="input-group">
-				<i class="fa-solid fa-key icon"></i> <input name="mk" type="password"
-					placeholder="Mật khẩu">
-			</div>
-
+			<a style="text-decoration: underline;
+    color: #2d6791;" href="reset-pass">Quên mật khẩu</a>
 			<div class="action">
-				<button type="button" class="btn" onclick="back()">Quay lại</button>
-				<button type="submit" class="btn" style="background-color: #2765ab;">Xác
-					nhận</button>
+				<button type="button" class="btn" onclick="dk()">Đăng ký</button>
+				<button type="submit" class="btn" style="background-color: #2765ab;">Đăng
+					nhập</button>
 			</div>
-		</form>
+			
+			
 			<c:if test="${error!=null}">
 				<p>${error}</p>
 			</c:if>
-	</div>
+		</div>
+	</form>
 
 	<script src="js/report/jquery.min.js"></script>
 
 	<script type="text/javascript">
 		function getOTP() {
-			const cccd = document.querySelector('#cccd');
+			const emailInput = document
+					.querySelector('.input-group input[name="email"]');
 			$.ajax({
-				url : 'reset-pass',
+				url : 'register',
 				type : 'GET',
 				data : {
 					otp : "true",
-					cccd : cccd.value
+					email : emailInput.value
 				},
 				success : function(response) {
 				},
@@ -66,8 +61,8 @@
 			});
 		}
 		
-		function back() {
-			window.location.href = "login";
+		function dk() {
+			window.location.href = "register";
 		}
 	</script>
 </body>

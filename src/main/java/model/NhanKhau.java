@@ -1,5 +1,6 @@
 package model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class NhanKhau {
@@ -8,8 +9,9 @@ public class NhanKhau {
 	private String tenCongDan;
 	private String cccd;
 	private Date ngaySinh;
+	private String ngaySinhStr;
 	private String email;
-	private boolean gioiTinh;
+	private String gioiTinh;
 	private String sdt;
 	private String diaChiThuongTru;
 	private String noiOHienTai;
@@ -23,11 +25,11 @@ public class NhanKhau {
 	private String tinhTrangHonNhan;
 	private Date ngayCapNhat;
 	private String ghiChu;
-	
+	private String image;
+
 	public NhanKhau() {
-		
+
 	}
-	
 
 	public NhanKhau(String idNhanKhau, String idHoKhau, String tenCongDan, String cccd, String noiOHienTai,
 			String quocTich, String danToc) {
@@ -41,8 +43,54 @@ public class NhanKhau {
 		this.danToc = danToc;
 	}
 
+	public NhanKhau(String idNhanKhau, String idHoKhau, String tenCongDan, String cccd, Date ngaySinh, String gioiTinh,
+			String noiOHienTai, String noiSinh, String quanHe, String quocTich, String danToc, String ngheNghiep,
+			String tinhTrangHocVan, String tinhTrangHonNhan, String image) {
+		super();
+		this.idHoKhau = idHoKhau;
+		this.tenCongDan = tenCongDan;
+		this.cccd = cccd;
+		this.ngaySinh = ngaySinh;
+		this.gioiTinh = gioiTinh;
+		this.noiOHienTai = noiOHienTai;
+		this.noiSinh = noiSinh;
+		this.quanHe = quanHe;
+		this.quocTich = quocTich;
+		this.danToc = danToc;
+		this.ngheNghiep = ngheNghiep;
+		this.tinhTrangHocVan = tinhTrangHocVan;
+		this.tinhTrangHonNhan = tinhTrangHonNhan;
+		this.image = image;
+		this.idNhanKhau = idNhanKhau;
+	}
 
+	public String getImage() {
+		return image;
+	}
 
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public String getNgaySinhStr() {
+		return ngaySinhStr;
+	}
+
+	public void setNgaySinhStr(String ngaySinhStr) {
+		this.ngaySinhStr = ngaySinhStr;
+	}
+
+	public NhanKhau(String idNhanKhau, String tenCongDan, String cccd, Date ngaySinh, String gioiTinh) {
+		super();
+		this.idNhanKhau = idNhanKhau;
+		this.tenCongDan = tenCongDan;
+		this.cccd = cccd;
+		this.ngaySinh = ngaySinh;
+		this.gioiTinh = gioiTinh;
+
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		this.ngaySinhStr = sdf.format(ngaySinh);
+	}
 
 	public String getIdNhanKhau() {
 		return idNhanKhau;
@@ -92,12 +140,12 @@ public class NhanKhau {
 		this.email = email;
 	}
 
-	public boolean isGioiTinh() {
+	public String getGioiTinh() {
 		return gioiTinh;
 	}
 
-	public void setGioiTin(boolean gioiTin) {
-		this.gioiTinh = gioiTin;
+	public void setGioiTinh(String gioiTinh) {
+		this.gioiTinh = gioiTinh;
 	}
 
 	public String getSdt() {
@@ -204,17 +252,26 @@ public class NhanKhau {
 		this.ghiChu = ghiChu;
 	}
 
-
 	@Override
 	public String toString() {
 		return "NhanKhau [idNhanKhau=" + idNhanKhau + ", idHoKhau=" + idHoKhau + ", tenCongDan=" + tenCongDan
-				+ ", cccd=" + cccd + ", ngaySinh=" + ngaySinh + ", email=" + email + ", gioiTinh=" + gioiTinh + ", sdt="
-				+ sdt + ", diaChiThuongTru=" + diaChiThuongTru + ", noiOHienTai=" + noiOHienTai + ", noiSinh=" + noiSinh
-				+ ", quanHe=" + quanHe + ", quocTich=" + quocTich + ", danToc=" + danToc + ", ngheNghiep=" + ngheNghiep
-				+ ", tinhTrangCuTru=" + tinhTrangCuTru + ", tinhTrangHocVan=" + tinhTrangHocVan + ", tinhTrangHonNhan="
-				+ tinhTrangHonNhan + ", ngayCapNhat=" + ngayCapNhat + ", ghiChu=" + ghiChu + "]";
+				+ ", cccd=" + cccd + ", ngaySinh=" + ngaySinh + ", ngaySinhStr=" + ngaySinhStr + ", email=" + email
+				+ ", gioiTinh=" + gioiTinh + ", sdt=" + sdt + ", diaChiThuongTru=" + diaChiThuongTru + ", noiOHienTai="
+				+ noiOHienTai + ", noiSinh=" + noiSinh + ", quanHe=" + quanHe + ", quocTich=" + quocTich + ", danToc="
+				+ danToc + ", ngheNghiep=" + ngheNghiep + ", tinhTrangCuTru=" + tinhTrangCuTru + ", tinhTrangHocVan="
+				+ tinhTrangHocVan + ", tinhTrangHonNhan=" + tinhTrangHonNhan + ", ngayCapNhat=" + ngayCapNhat
+				+ ", ghiChu=" + ghiChu + ", image=" + image + ", getImage()=" + getImage() + ", getNgaySinhStr()="
+				+ getNgaySinhStr() + ", getIdNhanKhau()=" + getIdNhanKhau() + ", getIdHoKhau()=" + getIdHoKhau()
+				+ ", getTenCongDan()=" + getTenCongDan() + ", getCccd()=" + getCccd() + ", getNgaySinh()="
+				+ getNgaySinh() + ", getEmail()=" + getEmail() + ", getGioiTinh()=" + getGioiTinh() + ", getSdt()="
+				+ getSdt() + ", getDiaChiThuongTru()=" + getDiaChiThuongTru() + ", getNoiOHienTai()=" + getNoiOHienTai()
+				+ ", getNoiSinh()=" + getNoiSinh() + ", getQuanHe()=" + getQuanHe() + ", getQuocTich()=" + getQuocTich()
+				+ ", getDanToc()=" + getDanToc() + ", getNgheNghiep()=" + getNgheNghiep() + ", getTinhTrangCuTru()="
+				+ getTinhTrangCuTru() + ", getTinhTrangHocVan()=" + getTinhTrangHocVan() + ", getTinhTrangHonNhan()="
+				+ getTinhTrangHonNhan() + ", getNgayCapNhat()=" + getNgayCapNhat() + ", getGhiChu()=" + getGhiChu()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
 	}
-	
-	
 
+	
 }

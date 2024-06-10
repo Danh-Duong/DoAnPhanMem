@@ -25,6 +25,9 @@ import org.json.JSONObject;
 
 import model.KhaiTu;
 import repository.KhaiTuRepository;
+import repository.NhanKhauRepository;
+import repository.TaiKhoanRepository;
+import utils.CookieUtils;
 import utils.EmailUtils;
 
 @WebServlet("/khaitu")
@@ -51,15 +54,22 @@ public class DangKyKhaiTuController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         KhaiTuRepository khaiTuRepository = new KhaiTuRepository();
-
+        NhanKhauRepository nhanKhauRepository = new NhanKhauRepository();
+        
         // Get information from the registration form
         String maKhaiTu = khaiTuRepository.getNewMaKhaiTu();
-        String idNhanKhau = "NK0005"; // Placeholder, should be retrieved properly
+        
+		String idHoKhau = nhanKhauRepository.getIdHoKhauByCCCD(CookieUtils.getCookieByName(request, "cccd"));
+
+        
+//        String idNhanKhau = "NK0005"; 
         String hoTenNguoiKhai = request.getParameter("hoTenNguoiKhai");
         String noiCuTruNguoiKhai = request.getParameter("noiCuTruNguoiKhai");
         String hoTenNguoiMat = request.getParameter("hoTenNguoiMat");
+        
         Date ngaySinh = null;
         try {
             ngaySinh = sdf.parse(request.getParameter("ngaySinh"));
@@ -71,6 +81,7 @@ public class DangKyKhaiTuController extends HttpServlet {
         String quocTich = request.getParameter("quocTich");
         String danToc = request.getParameter("danToc");
         String noiCuTruCuoiCung = request.getParameter("noiCuTruCuoiCung");
+        String noiMat = request.getParameter("noiMat");
         Date ngayMat = null;
         try {
             ngayMat = sdf.parse(request.getParameter("ngayMat"));
@@ -78,32 +89,28 @@ public class DangKyKhaiTuController extends HttpServlet {
             e.printStackTrace();
         }
         String gioMatStr = request.getParameter("gioMat");
-//        System.out.println("Time: " + gioMatStr);
-//        Time gioMat = Time.valueOf(gioMatStr);
         
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         // Chuyển chuỗi sang kiểu LocalTime
         LocalTime gioMat = LocalTime.parse(gioMatStr, formatter);
         
         String nguyenNhan = request.getParameter("nguyenNhan");
-        String noiDangKi = request.getParameter("noiDangKi");
-        Date ngayDangKi = null;
-        try {
-            ngayDangKi = sdf.parse(request.getParameter("ngayDangKi"));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        String noiDangKi = "Phòng Cảnh sát Hình sự - Công an TP. Đà Nẵng";
+        Date ngayDangKi = new Date();
+
         String quanHeVoiNguoiMat = request.getParameter("quanHeVoiNguoiMat");
         String trangThaiDuyet = "Chờ duyệt";
 
         // Validate input data
-        if (maKhaiTu == null || idNhanKhau == null || hoTenNguoiKhai == null || noiCuTruNguoiKhai == null ||
+        if (maKhaiTu == null || hoTenNguoiKhai == null || noiCuTruNguoiKhai == null ||
             hoTenNguoiMat == null || ngaySinh == null || noiSinh == null || gioiTinh == null || quocTich == null ||
             danToc == null || noiCuTruCuoiCung == null || ngayMat == null || gioMat == null || nguyenNhan == null ||
             noiDangKi == null || ngayDangKi == null || quanHeVoiNguoiMat == null) {
             request.setAttribute("error", "Vui lòng nhập đầy đủ thông tin cần thiết");
             request.getRequestDispatcher("DangKiKhaiTu.jsp").forward(request, response);
         } else {
+//        	String idNhanKhau = nhanKhauRepository.getIdByNameAndHk(hoTenNguoiMat, idHoKhau);
+        	String idNhanKhau = "NK0005";
             // Create a KhaiTu object from the information obtained
             KhaiTu khaiTu = new KhaiTu(maKhaiTu, idNhanKhau, hoTenNguoiKhai, noiCuTruNguoiKhai, hoTenNguoiMat, ngaySinh,
                     noiSinh, gioiTinh, quocTich, danToc, noiCuTruCuoiCung, ngayMat, gioMat, nguyenNhan, noiDangKi,
@@ -113,8 +120,9 @@ public class DangKyKhaiTuController extends HttpServlet {
             boolean result = khaiTuRepository.saveKhaiTu(khaiTu);
 
             if (result) {
+            	TaiKhoanRepository taiKhoanRepository = new TaiKhoanRepository();
                 // If saved successfully, redirect to the success notification page
-            	EmailUtils.sendEmail(request.getParameter("hoTenNguoiKhai"), "testdanh26@gmail.com", maKhaiTu, "khai tử");
+            	EmailUtils.sendEmail(request.getParameter("hoTenNguoiKhai"), taiKhoanRepository.getEmailByCCCD(CookieUtils.getCookieByName(request, "cccd")), maKhaiTu, "khai tử");
                 request.setAttribute("madangky", maKhaiTu);
                 request.setAttribute("hoso", "khai tử");
                 request.getRequestDispatcher("DangkyThanhCong.jsp").forward(request, response);

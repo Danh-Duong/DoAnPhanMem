@@ -129,6 +129,7 @@ section.search button[type="submit"] {
 	display: flex;
 	align-items: center;
 	padding: 10px;
+	width:190px;
 	background-color: #c93f3f;
 	color: white;
 	cursor: pointer;
@@ -142,6 +143,11 @@ section.search button[type="submit"] {
 	right: 10px;
 	transform: scale(0); 
 	transition: .2s ease-in-out 0s;
+}
+
+.login-menu a{
+	text-decoration: none;
+	color: white;
 }
 
 .login-check:hover  .login-menu {

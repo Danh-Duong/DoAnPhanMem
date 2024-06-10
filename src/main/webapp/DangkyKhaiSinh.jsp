@@ -36,10 +36,10 @@
 		        
 		<div>
 			<p class="title">TỜ KHAI ĐĂNG KÍ KHAI SINH</p>
-			<form action="khaisinh" method="post">
+			<form action="khaisinh" method="post" accept-charset="UTF-8">
 				<div class="info">
 					<p class="info-title">Họ, chữ đệm, tên người yêu cầu:</p>
-					<input name="nguoidangky">
+					<input name="nguoiyeucau">
 				</div>
 				<div class="info">
 					<p class="info-title">Quan hệ với người được khai sinh:</p>

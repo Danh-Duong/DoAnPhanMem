@@ -24,7 +24,7 @@
 
 		<div>
 			<p class="title">TỜ KHAI ĐĂNG KÍ KHAI TỬ</p>
-			<form action="khaitu" method="post">
+			<form action="khaitu" method="post" accept-charset="UTF-8">
 				<div class="info">
 					<p class="info-title">Họ, chữ đệm, tên người yêu cầu:</p>
 					<input name="hoTenNguoiKhai">
@@ -121,20 +121,6 @@
 							</div>
 						</div>
 
-					</div>
-					<div class="info-detail">
-						<div class="row">
-							<div class="col-md-12">
-								<p class="info-title1">Đăng kí khai tử tại</p>
-								<input class="info-value" name="noiDangKi">
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12">
-								<p class="info-title1">Ngày đăng kí</p>
-								<input class="info-value" type="date" name="ngayDangKi">
-							</div>
-						</div>
 					</div>
 
 					<div class="commit">

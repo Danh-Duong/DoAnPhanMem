@@ -19,6 +19,7 @@ import model.KhaiSinh;
 import model.NhanKhau;
 import repository.KhaiSinhRepository;
 import repository.NhanKhauRepository;
+import repository.TaiKhoanRepository;
 import utils.CookieUtils;
 import utils.EmailUtils;
 
@@ -70,13 +71,13 @@ public class DangKyKhaiSinhController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		KhaiSinhRepository khaiSinhRepository = new KhaiSinhRepository();
 		NhanKhauRepository nhanKhauRepository = new NhanKhauRepository();
 
 		String maDangKiKhaiSinh = khaiSinhRepository.getNewMaKhaiSinh();
-//		String idHoKhau = nhanKhauRepository.getIdHoKhauByCCCD(CookieUtils.getCookieByName(request, "cccd"));
-		String idHoKhau = "HK006";
+		String idHoKhau = nhanKhauRepository.getIdHoKhauByCCCD(CookieUtils.getCookieByName(request, "cccd"));
 		String hoTen = request.getParameter("hoTen");
 		Date ngaySinh = null;
 		try {
@@ -92,16 +93,13 @@ public class DangKyKhaiSinhController extends HttpServlet {
 		String noiSinh = request.getParameter("noiSinh");
 		String queQuan = request.getParameter("queQuan");
 		String nguoidangky = request.getParameter("nguoidangky");
-//		String idNhanKhauCha = nhanKhauRepository.getIdByCCCD(request.getParameter("cccdCha"));
-//		String idNhanKhauMe = nhanKhauRepository.getIdByCCCD(request.getParameter("cccdMe"));
+		String idNhanKhauCha = nhanKhauRepository.getIdByCCCD(request.getParameter("cccdCha"));
+		String idNhanKhauMe = nhanKhauRepository.getIdByCCCD(request.getParameter("cccdMe"));
 
-		String idNhanKhauCha = "NK0003";
-		String idNhanKhauMe = "NK0004";
 		String quanHeNguoiKhaiSinh = request.getParameter("quanHeNguoiKhaiSinh");
 
-		if (idHoKhau == null || nguoidangky == null || hoTen == null || ngaySinh == null || gioiTinh == null
-				|| quocTich == null || danToc == null || noiSinh == null || queQuan == null || idNhanKhauCha == null
-				|| queQuan == null || idNhanKhauMe == null || queQuan == null || quanHeNguoiKhaiSinh == null) {
+		if (hoTen == null || ngaySinh == null || gioiTinh == null || quocTich == null || danToc == null || noiSinh == null || queQuan == null || idNhanKhauCha == null
+				|| idNhanKhauMe == null ) {
 			request.setAttribute("error", "Vui lòng nhập đầy đủ thông tin cần thiết");
 			request.getRequestDispatcher("DangkyKhaiSinh.jsp").forward(request, response);
 		} else {
@@ -109,11 +107,14 @@ public class DangKyKhaiSinhController extends HttpServlet {
 					gioiTinh, quocTich, danToc, noiSinh, queQuan, "Đà Nẵng", idNhanKhauCha, idNhanKhauMe,
 					quanHeNguoiKhaiSinh, "Chờ xét duyệt");
 			if (khaiSinhRepository.saveKhaiSinh(khaiSinh)) {
-//			EmailUtils.sendEmail(request.getParameter("nguoiyeucau"),nhanKhauRepository.getIdByCCCD(CookieUtils.getCookieByName(request, "cccd")), maDangKiKhaiSinh);
-				EmailUtils.sendEmail(request.getParameter("nguoidangky"), "testdanh26@gmail.com", maDangKiKhaiSinh, "khai sinh");
-                request.setAttribute("madangky", maDangKiKhaiSinh);
-                request.setAttribute("hoso", "khai sinh");
-                request.getRequestDispatcher("DangkyThanhCong.jsp").forward(request, response);
+				TaiKhoanRepository taiKhoanRepository = new TaiKhoanRepository();
+				EmailUtils.sendEmail(request.getParameter("nguoiyeucau"),
+						taiKhoanRepository.getEmailByCCCD(CookieUtils.getCookieByName(request, "cccd")),
+						maDangKiKhaiSinh, "khai sinh");
+
+				request.setAttribute("madangky", maDangKiKhaiSinh);
+				request.setAttribute("hoso", "khai sinh");
+				request.getRequestDispatcher("DangkyThanhCong.jsp").forward(request, response);
 			} else {
 				List<String> COUNTRY = getData(
 						"http://api.nosomovo.xyz/country/getalllist?_gl=1*1jgm3in*_ga*MjQ1MTcwNjMyLjE3MTcwODQzODg.*_ga_XW6CMNCYH8*MTcxNzA4NDM4Ny4xLjEuMTcxNzA4NDQwNS4wLjAuMA..",
