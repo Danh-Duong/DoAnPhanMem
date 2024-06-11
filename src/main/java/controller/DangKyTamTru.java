@@ -28,7 +28,7 @@ public class DangKyTamTru extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         
         String soCCCD = request.getParameter("soCCCD");
-        String diaChiCuThe = request.getParameter("diaChiTamTru");
+        String diaChiCuThe = request.getParameter("diaChiCuThe");
         String ngayBatDauTru = request.getParameter("ngayBatDauTru");
         String ngayKetThucTru = request.getParameter("ngayKetThucTru");
         String lyDo = request.getParameter("lyDo");
@@ -72,4 +72,5 @@ public class DangKyTamTru extends HttpServlet {
     public String getServletInfo() {
         return "Servlet for registering temporary residence";
     }
+    
 }

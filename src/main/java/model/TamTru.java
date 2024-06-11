@@ -24,7 +24,10 @@ public class TamTru {
         this.ghiChu = ghiChu;
     }
 
-    // Getters and Setters
+    public TamTru() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
     public String getMaTamTru() {
         return maTamTru;
     }
@@ -90,6 +93,14 @@ public class TamTru {
     }
 
     public Object getTrangThaiDuyet() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setTrangThaiDuyet(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setId(int aInt) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
