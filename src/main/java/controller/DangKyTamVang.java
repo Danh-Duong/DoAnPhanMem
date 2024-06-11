@@ -23,6 +23,7 @@ import org.json.JSONObject;
 import model.TamVang;
 import repository.NhanKhauRepository;
 import repository.TamVangRepository;
+import utils.CookieUtils;
 
 /**
  * Servlet implementation class DangKyTamVang
@@ -30,55 +31,65 @@ import repository.TamVangRepository;
 @WebServlet("/tamvang")
 public class DangKyTamVang extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DangKyTamVang() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		List<String> COUNTRY = getData(
-				"http://api.nosomovo.xyz/country/getalllist?_gl=1*1jgm3in*_ga*MjQ1MTcwNjMyLjE3MTcwODQzODg.*_ga_XW6CMNCYH8*MTcxNzA4NDM4Ny4xLjEuMTcxNzA4NDQwNS4wLjAuMA..",
-				"name_vi");
-		request.setAttribute("COUNTRY", COUNTRY);
-		request.getRequestDispatcher("DangKiTamVang.jsp").forward(request, response);
+	public DangKyTamVang() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		String cccd = CookieUtils.getCookieByName(request, "cccd");
+		if (cccd == null) {
+			response.sendRedirect("login");
+		} else {
+			List<String> COUNTRY = getData(
+					"http://api.nosomovo.xyz/country/getalllist?_gl=1*1jgm3in*_ga*MjQ1MTcwNjMyLjE3MTcwODQzODg.*_ga_XW6CMNCYH8*MTcxNzA4NDM4Ny4xLjEuMTcxNzA4NDQwNS4wLjAuMA..",
+					"name_vi");
+			request.setAttribute("COUNTRY", COUNTRY);
+			request.getRequestDispatcher("DangKiTamVang.jsp").forward(request, response);
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
-		String soCCCD= request.getParameter("soCCCD");
+		String soCCCD = request.getParameter("soCCCD");
 		String diaChiCuThe = request.getParameter("diaChiTamVang");
 		String ngayBatDauVang = request.getParameter("ngayBatDauVang");
 		String ngayKetThucVang = request.getParameter("ngayKetThucVang");
-		String lyDo= request.getParameter("lyDo");
-		String idnk=null;
+		String lyDo = request.getParameter("lyDo");
+		String idnk = null;
 		NhanKhauRepository nhanKhauRepository = new NhanKhauRepository();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		
-		if (soCCCD!=null) {
+
+		if (soCCCD != null) {
 			idnk = nhanKhauRepository.getIdByCCCD(soCCCD);
 		}
-		
-		if (soCCCD==null || diaChiCuThe==null || ngayBatDauVang==null || ngayKetThucVang==null || lyDo==null) {
+
+		if (soCCCD == null || diaChiCuThe == null || ngayBatDauVang == null || ngayKetThucVang == null
+				|| lyDo == null) {
 			request.setAttribute("error", "Vui lòng điền đầy đủ thông tin");
 			request.getRequestDispatcher("DangKiTamVang.jsp").forward(request, response);
-		}
-		else {
-			
+		} else {
+
 			TamVangRepository tamVangRepository = new TamVangRepository();
 			try {
-				TamVang tamVang = new TamVang(tamVangRepository.getNewMaTamVang(), new Date(), diaChiCuThe, lyDo, idnk,  sdf.parse(ngayBatDauVang), sdf.parse(ngayKetThucVang), "Chờ xét duyệt");
+				TamVang tamVang = new TamVang(tamVangRepository.getNewMaTamVang(), new Date(), diaChiCuThe, lyDo, idnk,
+						sdf.parse(ngayBatDauVang), sdf.parse(ngayKetThucVang), "Chờ xét duyệt");
 				tamVangRepository.saveTamVang(tamVang);
 				response.sendRedirect("/DoAnPhanMem/");
 			} catch (ParseException e) {
@@ -87,8 +98,7 @@ public class DangKyTamVang extends HttpServlet {
 			}
 		}
 	}
-	
-	
+
 	public static List<String> getData(String urlString, String atr) {
 		try {
 			// Tạo đối tượng URL

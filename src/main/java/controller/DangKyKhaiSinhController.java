@@ -52,16 +52,23 @@ public class DangKyKhaiSinhController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		List<String> COUNTRY = getData(
-				"http://api.nosomovo.xyz/country/getalllist?_gl=1*1jgm3in*_ga*MjQ1MTcwNjMyLjE3MTcwODQzODg.*_ga_XW6CMNCYH8*MTcxNzA4NDM4Ny4xLjEuMTcxNzA4NDQwNS4wLjAuMA..",
-				"name_vi");
-		List<String> ETHNIC = getData(
-				"http://api.nosomovo.xyz/ethnic/getalllist?_gl=1*zcyui6*_ga*MjQ1MTcwNjMyLjE3MTcwODQzODg.*_ga_XW6CMNCYH8*MTcxNzA4NDM4Ny4xLjEuMTcxNzA4NDQwNS4wLjAuMA..",
-				"name");
 
-		request.setAttribute("ETHNIC", ETHNIC);
-		request.setAttribute("COUNTRY", COUNTRY);
-		request.getRequestDispatcher("DangkyKhaiSinh.jsp").forward(request, response);
+		String cccd = CookieUtils.getCookieByName(request, "cccd");
+		if (cccd == null) {
+			response.sendRedirect("login");
+		} else {
+
+			List<String> COUNTRY = getData(
+					"http://api.nosomovo.xyz/country/getalllist?_gl=1*1jgm3in*_ga*MjQ1MTcwNjMyLjE3MTcwODQzODg.*_ga_XW6CMNCYH8*MTcxNzA4NDM4Ny4xLjEuMTcxNzA4NDQwNS4wLjAuMA..",
+					"name_vi");
+			List<String> ETHNIC = getData(
+					"http://api.nosomovo.xyz/ethnic/getalllist?_gl=1*zcyui6*_ga*MjQ1MTcwNjMyLjE3MTcwODQzODg.*_ga_XW6CMNCYH8*MTcxNzA4NDM4Ny4xLjEuMTcxNzA4NDQwNS4wLjAuMA..",
+					"name");
+
+			request.setAttribute("ETHNIC", ETHNIC);
+			request.setAttribute("COUNTRY", COUNTRY);
+			request.getRequestDispatcher("DangkyKhaiSinh.jsp").forward(request, response);
+		}
 	}
 
 	/**
@@ -98,8 +105,8 @@ public class DangKyKhaiSinhController extends HttpServlet {
 
 		String quanHeNguoiKhaiSinh = request.getParameter("quanHeNguoiKhaiSinh");
 
-		if (hoTen == null || ngaySinh == null || gioiTinh == null || quocTich == null || danToc == null || noiSinh == null || queQuan == null || idNhanKhauCha == null
-				|| idNhanKhauMe == null ) {
+		if (hoTen == null || ngaySinh == null || gioiTinh == null || quocTich == null || danToc == null
+				|| noiSinh == null || queQuan == null || idNhanKhauCha == null || idNhanKhauMe == null) {
 			request.setAttribute("error", "Vui lòng nhập đầy đủ thông tin cần thiết");
 			request.getRequestDispatcher("DangkyKhaiSinh.jsp").forward(request, response);
 		} else {
