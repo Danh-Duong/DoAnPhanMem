@@ -20,7 +20,7 @@
 				<p style="margin: 0 0 0 5px">${cookie.cccd.value}</p>
 
 				<div class="login-menu" style="z-index: 99999;">
-					<a href="#"><p>Hồ sơ</p></a>
+					<a href="myhoso"><p>Hồ sơ</p></a>
 					<a href="logout"><p>Đăng xuất</p></a>
 				</div>
 			</div>
@@ -43,7 +43,7 @@
 					class="fa-solid fa-house-user fa-2x"></i></a></li>
 			<li><a href="#">THỦ TỤC HÀNH CHÍNH</a></li>
 			<li><a href="#">TRA CỨU HỒ SƠ</a></li>
-			<li><a href="#">NỘP HỒ SƠ TRỰC TUYẾN</a></li>
+			<li><a href="hoso.jsp">NỘP HỒ SƠ TRỰC TUYẾN</a></li>
 			<li><a href="#">HỎI ĐÁP</a></li>
 			<li><a href="#">HỖ TRỢ</a></li>
 		</ul>

@@ -20,22 +20,24 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import model.TamTru;
 import model.TamVang;
 import repository.NhanKhauRepository;
+import repository.TamTruRepository;
 import repository.TamVangRepository;
 import utils.CookieUtils;
 
 /**
- * Servlet implementation class DangKyTamVang
+ * Servlet implementation class DangKyTamTru
  */
-@WebServlet("/tamvang")
-public class DangKyTamVang extends HttpServlet {
+@WebServlet("/tamtru")
+public class DangKyTamTru extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public DangKyTamVang() {
+	public DangKyTamTru() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -55,7 +57,7 @@ public class DangKyTamVang extends HttpServlet {
 					"http://api.nosomovo.xyz/country/getalllist?_gl=1*1jgm3in*_ga*MjQ1MTcwNjMyLjE3MTcwODQzODg.*_ga_XW6CMNCYH8*MTcxNzA4NDM4Ny4xLjEuMTcxNzA4NDQwNS4wLjAuMA..",
 					"name_vi");
 			request.setAttribute("COUNTRY", COUNTRY);
-			request.getRequestDispatcher("DangKiTamVang.jsp").forward(request, response);
+			request.getRequestDispatcher("DangKiTamTru.jsp").forward(request, response);
 		}
 	}
 
@@ -67,30 +69,30 @@ public class DangKyTamVang extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
-		String soCCCD = request.getParameter("soCCCD");
-		String diaChiCuThe = request.getParameter("diaChiTamVang");
-		String ngayBatDauVang = request.getParameter("ngayBatDauVang");
-		String ngayKetThucVang = request.getParameter("ngayKetThucVang");
-		String lyDo = request.getParameter("lyDo");
-		String idnk = null;
-		NhanKhauRepository nhanKhauRepository = new NhanKhauRepository();
+		String hoTen = request.getParameter("hoTen");
+		String ngaySinh = request.getParameter("ngaySinh");
+		String gioiTinh = request.getParameter("gioiTinh");
+		String cccd = request.getParameter("cccd");
+		String quocTich = request.getParameter("quocTich");
+		String soDT = request.getParameter("soDT");
+		String diaChiCuThe = request.getParameter("diaChiCuThe");
+		String diaChiTamTru = request.getParameter("diaChiTamTru");
+		String hoTenChuHo = request.getParameter("hoTenChuHo");
+		String quanHeChuHo = request.getParameter("quanHeChuHo");
+		String socccdChuHo = request.getParameter("socccdChuHo");
+		
+		TamTruRepository tamTruRepository = new TamTruRepository();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-		if (soCCCD != null) {
-			idnk = nhanKhauRepository.getIdByCCCD(soCCCD);
-		}
 
-		if (soCCCD == null || diaChiCuThe == null || ngayBatDauVang == null || ngayKetThucVang == null
-				|| lyDo == null) {
+		if (hoTen == null || ngaySinh == null || gioiTinh == null || cccd == null
+				|| diaChiTamTru == null || hoTenChuHo == null|| quanHeChuHo == null|| socccdChuHo == null ) {
 			request.setAttribute("error", "Vui lòng điền đầy đủ thông tin");
-			request.getRequestDispatcher("DangKiTamVang.jsp").forward(request, response);
+			request.getRequestDispatcher("DangKiTamTru.jsp").forward(request, response);
 		} else {
-
-			TamVangRepository tamVangRepository = new TamVangRepository();
 			try {
-				TamVang tamVang = new TamVang(tamVangRepository.getNewMaTamVang(), new Date(), diaChiCuThe, lyDo, idnk,
-						sdf.parse(ngayBatDauVang), sdf.parse(ngayKetThucVang), "Chờ xét duyệt", CookieUtils.getCookieByName(request, "cccd"));
-				tamVangRepository.saveTamVang(tamVang);
+				TamTru tamTru = new TamTru(tamTruRepository.getNewMaTamTru(), hoTen, sdf.parse(ngaySinh), gioiTinh, cccd, quocTich, soDT, diaChiCuThe, diaChiTamTru, hoTenChuHo, quanHeChuHo, socccdChuHo, "Chờ xét duyệt");
+				tamTruRepository.saveTamTru(tamTru);
 				response.sendRedirect("/DoAnPhanMem/");
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
@@ -98,7 +100,7 @@ public class DangKyTamVang extends HttpServlet {
 			}
 		}
 	}
-
+	
 	public static List<String> getData(String urlString, String atr) {
 		try {
 			// Tạo đối tượng URL

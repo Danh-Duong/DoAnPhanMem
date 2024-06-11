@@ -19,6 +19,7 @@ import model.KhaiSinh;
 import model.NhanKhau;
 import repository.KhaiSinhRepository;
 import repository.NhanKhauRepository;
+import utils.EmailUtils;
 
 /**
  * Servlet implementation class DuyetKhaiSinhController
@@ -86,6 +87,7 @@ public class DuyetKhaiSinhController extends HttpServlet {
 			else if (type.equals("yes")) {
 				khaiSinhRepository.updateTrangthai(mahs,"Đã duyệt");
 				nhanKhauRepository.saveNhanKhau(ks, nhanKhauRepository.getNewMaNhanKhau());
+				EmailUtils.sendEmailNoti("testdanh26@gmail.com", "khai sinh", mahs, " đã được duyệt");
 				request.setAttribute("success", "Duyệt hồ sơ thành công!");
 				request.setAttribute("hoso", khaiSinhRepository.getDanhsachHoso("Đã duyệt"));
 				request.setAttribute("slhoso", khaiSinhRepository.getDanhsachHoso("Đã duyệt").size());
@@ -97,6 +99,7 @@ public class DuyetKhaiSinhController extends HttpServlet {
 			else {
 				khaiSinhRepository.updateTrangthai(mahs,"Đã hủy");
 				request.setAttribute("success", "Hủy hồ sơ thành công!");
+				EmailUtils.sendEmailNoti("testdanh26@gmail.com", "khai sinh", mahs, " đã bị hủy");
 				request.setAttribute("hoso", khaiSinhRepository.getDanhsachHoso("Đã duyệt"));
 				request.setAttribute("slhoso", khaiSinhRepository.getDanhsachHoso("Đã duyệt").size());
 				request.setAttribute("trangthai", 1);

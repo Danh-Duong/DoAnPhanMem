@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
@@ -19,7 +20,7 @@
 
 <body>
 	<div class="header">
-	<%@ include file="header.jsp" %>
+		<%@ include file="header.jsp"%>
 	</div>
 	<div class="content">
 		<div class="nav">
@@ -31,44 +32,41 @@
 		</div>
 		<div>
 			<h3 class="title">TỜ KHAI ĐĂNG KÍ TẠM TRÚ</h3>
-			<form action="tamvang" method="post">
+			<form action="tamtru" method="post" accept-charset="UTF-8">
 				<div class="section">
-				<div class="info-detail">
-                    <p class="subtitle">CƠ QUAN THỰC HIỆN</p>
-                    <div class="line"></div>
-                    <div class="row">
+					<div class="info-detail">
+						<p class="subtitle">CƠ QUAN THỰC HIỆN</p>
+						<div class="line"></div>
+						<div class="row">
 							<div class="col-md-4">
 								<p class="info-title1">Tỉnh/Thành phố:</p>
 								<input type="text" id="thanhpho" value="Đà Nẵng" name="thanhPho">
 							</div>
 							<div class="col-md-4">
 								<p class="info-title1">Quận/Huyện:</p>
-								<select class="form-select" aria-label="Default select example"
-									name="quanHuyen">									
-										<option selected>Chọn quận/huyện</option>
-								</select>
+								<input type="text" id="thanhpho" value="Hải Châu"
+									name="thanhPho">
 							</div>
 							<div class="col-md-4">
 								<p class="info-title1">Phường/Xã:</p>
-								<select class="form-select" aria-label="Default select example"
-									name="phuongXa">									
-										<option selected>Chọn phường/xã</option>
-								</select>
+								<input type="text" id="thanhpho" value="Thanh Bình"
+									name="thanhPho">
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-12">
 								<p class="info-title1">Cơ quan thực hiện:</p>
-								<input class="info-value" name="coQuanThucHien" type="text">
+								<input class="info-value" name="coQuanThucHien" type="text"
+									value="Công an phường Thanh Bình">
 							</div>
 						</div>
-                </div>
-                </div>
-                <div class="section">
-                <div class="info-detail">
-                    <p class="subtitle">THÔNG TIN NGƯỜI KHAI BÁO TẠM TRÚ</p>
-                    <div class="line"></div>
-                    <div class="row">
+					</div>
+				</div>
+				<div class="section">
+					<div class="info-detail">
+						<p class="subtitle">THÔNG TIN NGƯỜI KHAI BÁO TẠM TRÚ</p>
+						<div class="line"></div>
+						<div class="row">
 							<div class="col-md-4">
 								<p class="info-title1">Họ tên</p>
 								<input class="info-value" name="hoTen" type="text">
@@ -82,8 +80,8 @@
 								<select class="form-select" aria-label="Default select example"
 									name="gioiTinh">
 									<option selected>Chọn giới tính</option>
-									<option value="M">Nam</option>
-									<option value="F">Nữ</option>
+									<option value="Nam">Nam</option>
+									<option value="Nữ">Nữ</option>
 								</select>
 							</div>
 						</div>
@@ -97,6 +95,9 @@
 								<select class="form-select" aria-label="Default select example"
 									name="quocTich">
 									<option selected="selected">-</option>
+									<c:forEach items="${COUNTRY}" var="c">
+										<option value="${c}">${c}</option>
+									</c:forEach>
 								</select>
 							</div>
 							<div class="col-md-4">
@@ -104,7 +105,7 @@
 								<input class="info-value" name="soDT" type="text">
 							</div>
 						</div>
-						<div class="row">
+						<!-- <div class="row">
 							<div class="col-md-4">
 								<p class="info-title1">Tỉnh/Thành phố:</p>
 								<input type="text" id="thanhpho" value="Đà Nẵng" name="thanhPho">
@@ -112,18 +113,18 @@
 							<div class="col-md-4">
 								<p class="info-title1">Quận/Huyện:</p>
 								<select class="form-select" aria-label="Default select example"
-									name="quanHuyen">									
-										<option selected>Chọn quận/huyện</option>
+									name="quanHuyen">
+									<option selected>Chọn quận/huyện</option>
 								</select>
 							</div>
 							<div class="col-md-4">
 								<p class="info-title1">Phường/Xã:</p>
 								<select class="form-select" aria-label="Default select example"
-									name="phuongXa">									
-										<option selected>Chọn phường/xã</option>
+									name="phuongXa">
+									<option selected>Chọn phường/xã</option>
 								</select>
 							</div>
-						</div>
+						</div> -->
 						<div class="row">
 							<div class="col-md-12">
 								<p class="info-title1">Địa chỉ cụ thể:</p>
@@ -131,24 +132,25 @@
 							</div>
 						</div>
 					</div>
-					</div>
-					<div class="section">
+				</div>
+				<div class="section">
 					<div class="info-detail">
-                    <p class="subtitle">THÔNG TIN ĐĂNG KÍ TẠM VẮNG</p>
-                    <div class="line"></div>
-                    <div class="radio-select">
-                    		<p>Trường hợp đăng kí:</p>
-                    		
-						  <div class="radio-item">
-                <input type="radio" id="old" name="tamtru" value="old">
-                <label for="old">Đăng kí tạm trú vào hộ đã có</label>
-            </div>
-            <div class="radio-item">
-                <input type="radio" id="new" name="tamtru" value="new">
-                <label for="new">Đăng kí lập hộ mới</label>
-            </div>
-                    </div>
-                    <div class="row">
+						<p class="subtitle">THÔNG TIN ĐĂNG KÍ TẠM VẮNG</p>
+						<div class="line"></div>
+						<!-- <div class="radio-select">
+							<p>Trường hợp đăng kí:</p>
+
+							 
+							<div class="radio-item">
+								<input type="radio" id="old" name="tamtru" value="old">
+								<label for="old">Đăng kí tạm trú vào hộ đã có</label>
+							</div>
+							<div class="radio-item">
+								<input type="radio" id="new" name="tamtru" value="new">
+								<label for="new">Đăng kí lập hộ mới</label>
+							</div>
+						</div>
+						<div class="row">
 							<div class="col-md-4">
 								<p class="info-title1">Tỉnh/Thành phố:</p>
 								<input type="text" id="thanhpho" value="Đà Nẵng" name="thanhPho">
@@ -156,22 +158,22 @@
 							<div class="col-md-4">
 								<p class="info-title1">Quận/Huyện:</p>
 								<select class="form-select" aria-label="Default select example"
-									name="quanHuyen">									
-										<option selected>Chọn quận/huyện</option>
+									name="quanHuyen">
+									<option selected>Chọn quận/huyện</option>
 								</select>
 							</div>
 							<div class="col-md-4">
 								<p class="info-title1">Phường/Xã:</p>
 								<select class="form-select" aria-label="Default select example"
-									name="phuongXa">									
-										<option selected>Chọn phường/xã</option>
+									name="phuongXa">
+									<option selected>Chọn phường/xã</option>
 								</select>
 							</div>
-						</div>
+						</div> -->
 						<div class="row">
 							<div class="col-md-12">
 								<p class="info-title1">Địa chỉ cụ thể:</p>
-								<input class="info-value" name="diaChiCuThe" type="text">
+								<input class="info-value" name="diaChiTamTru" type="text">
 							</div>
 						</div>
 						<div class="row">
@@ -188,31 +190,29 @@
 								<input class="info-value" name="socccdChuHo" type="text">
 							</div>
 						</div>
-						
-						</div>
-                </div>		
-					<div class="commit">
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" value=""
-								id="flexCheckDefault"> <label class="form-check-label"
-								for="flexCheckDefault"> Tôi cam đoan nội dung đề nghị
-								đăng ký tạm vắng trên đây là đúng sự thật, được sự thỏa thuận
-								nhất trí của các bên liên quan theo quy định pháp luật. Tôi chịu
-								hoàn toàn trách nhiệm trước pháp luật về nội dung cam đoan của
-								mình. </label>
-						</div>
-					</div>
-					</form>
-					</div>
-					</div>
-					
 
-					<div class="action">
-						<button class="cancel">Hủy đăng ký</button>
-						<button type="submit" class="submit">Nộp tờ khai</button>
 					</div>
+				</div>
+				<div class="commit">
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" value=""
+							id="flexCheckDefault"> <label class="form-check-label"
+							for="flexCheckDefault"> Tôi cam đoan nội dung đề nghị
+							đăng ký tạm vắng trên đây là đúng sự thật, được sự thỏa thuận
+							nhất trí của các bên liên quan theo quy định pháp luật. Tôi chịu
+							hoàn toàn trách nhiệm trước pháp luật về nội dung cam đoan của
+							mình. </label>
+					</div>
+				</div>
+				<div class="action">
+					<button type="button" class="cancel">Hủy đăng ký</button>
+					<button type="submit" class="submit">Nộp tờ khai</button>
+				</div>
+			</form>
+		</div>
+	</div>
 
-	
-	<%@ include file="footer.jsp" %>
+
+	<%@ include file="footer.jsp"%>
 </body>
 </html>

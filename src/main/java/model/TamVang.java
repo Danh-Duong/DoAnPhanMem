@@ -11,8 +11,17 @@ public class TamVang {
     private Date ngayBatDau;
     private Date ngayKetThuc;
     private String trangThaiDuyet;
+    private String cccdNdk;
+	public String getCccdNdk() {
+		return cccdNdk;
+	}
+
+	public void setCccdNdk(String cccdNdk) {
+		this.cccdNdk = cccdNdk;
+	}
+
 	public TamVang(String maTamVang, Date ngayDangKi, String diaChiDen, String lyDo, String idNhanKhau, Date ngayBatDau,
-			Date ngayKetThuc, String trangThaiDuyet) {
+			Date ngayKetThuc, String trangThaiDuyet, String cccdNdk) {
 		super();
 		this.maTamVang = maTamVang;
 		this.ngayDangKi = ngayDangKi;
@@ -22,6 +31,7 @@ public class TamVang {
 		this.ngayBatDau = ngayBatDau;
 		this.ngayKetThuc = ngayKetThuc;
 		this.trangThaiDuyet = trangThaiDuyet;
+		this.cccdNdk=cccdNdk;
 	}
 	
 	public TamVang(String maTamVang, Date ngayDangKi, String lyDo, String idNhanKhau) {

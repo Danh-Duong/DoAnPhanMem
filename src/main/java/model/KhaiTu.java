@@ -22,13 +22,13 @@ public class KhaiTu {
     private Date ngayDangKi;
     private String quanHeVoiNguoiMat;
     private String trangThaiDuyet;
-    
+    private String cccdNdk;
     
     
 	public KhaiTu(String maKhaiTu, String idNhanKhau, String hoTenNguoiKhai, String noiCuTruNguoiKhai,
 			String hoTenNguoiMat, Date ngaySinh, String noiSinh, String gioiTinh, String quocTich, String danToc,
 			String noiCuTruCuoiCung, Date ngayMat, LocalTime gioMat, String nguyenNhan, String noiDangKi, Date ngayDangKi,
-			String quanHeVoiNguoiMat, String trangThaiDuyet) {
+			String quanHeVoiNguoiMat, String trangThaiDuyet, String cccdNdk) {
 		super();
 		this.maKhaiTu = maKhaiTu;
 		this.idNhanKhau = idNhanKhau;
@@ -48,9 +48,16 @@ public class KhaiTu {
 		this.ngayDangKi = ngayDangKi;
 		this.quanHeVoiNguoiMat = quanHeVoiNguoiMat;
 		this.trangThaiDuyet = trangThaiDuyet;
+		this.cccdNdk=cccdNdk;
 	}
 	public KhaiTu() {
 		
+	}
+	public String getCccdNdk() {
+		return cccdNdk;
+	}
+	public void setCccdNdk(String cccdNdk) {
+		this.cccdNdk = cccdNdk;
 	}
 	public KhaiTu(String maKhaiTu, String idNhanKhau) {
 		super();

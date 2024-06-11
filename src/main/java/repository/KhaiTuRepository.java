@@ -19,7 +19,7 @@ public class KhaiTuRepository {
 	ResultSet rs = null;
 
 	public boolean saveKhaiTu(KhaiTu khaitu) {
-		String query = "INSERT tbKHAITU VALUES (?, ?, ?, ?, ?,?, ?, ?, ?, ?,?, ?, ?, ?,?,?,?,?)";
+		String query = "INSERT tbKHAITU VALUES (?, ?, ?, ?, ?,?, ?, ?, ?, ?,?, ?, ?, ?,?,?,?,?, ?)";
 
 		try {
 			new DBConnect();
@@ -47,6 +47,7 @@ public class KhaiTuRepository {
 	        ps.setDate(16, sqlNgayDK);
 	        ps.setString(17, khaitu.getQuanHeVoiNguoiMat());
 			ps.setString(18, "Chờ xét duyệt");
+			ps.setString(19, khaitu.getCccdNdk());
 
 			ps.executeUpdate();
 
@@ -130,7 +131,8 @@ public class KhaiTuRepository {
 						rs.getString(15),
 						new java.util.Date(rs.getDate(16).getTime()),
 						rs.getString(17),
-						rs.getString(18));
+						rs.getString(18),
+						rs.getString(19));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -219,7 +221,8 @@ public class KhaiTuRepository {
 						rs.getString(15),
 						new java.util.Date(rs.getDate(16).getTime()),
 						rs.getString(17),
-						rs.getString(18)));
+						rs.getString(18),
+						rs.getString(19)));
 			}
 			return result;
 		} catch (SQLException e) {

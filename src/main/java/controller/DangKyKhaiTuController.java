@@ -119,7 +119,7 @@ public class DangKyKhaiTuController extends HttpServlet {
             // Create a KhaiTu object from the information obtained
             KhaiTu khaiTu = new KhaiTu(maKhaiTu, idNhanKhau, hoTenNguoiKhai, noiCuTruNguoiKhai, hoTenNguoiMat, ngaySinh,
                     noiSinh, gioiTinh, quocTich, danToc, noiCuTruCuoiCung, ngayMat, gioMat, nguyenNhan, noiDangKi,
-                    ngayDangKi, quanHeVoiNguoiMat, trangThaiDuyet);
+                    ngayDangKi, quanHeVoiNguoiMat, trangThaiDuyet, CookieUtils.getCookieByName(request, "cccd"));
 
             // Save the death registration information to the database
             boolean result = khaiTuRepository.saveKhaiTu(khaiTu);

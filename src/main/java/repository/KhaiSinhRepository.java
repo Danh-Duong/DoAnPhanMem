@@ -18,7 +18,7 @@ public class KhaiSinhRepository {
 	ResultSet rs = null;
 
 	public boolean saveKhaiSinh(KhaiSinh khaisinh) {
-		String query = "INSERT tbKHAISINH VALUES (?, ?, ?, ?, ?,?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?)";
+		String query = "INSERT tbKHAISINH VALUES (?, ?, ?, ?, ?,?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?)";
 
 		try {
 			new DBConnect();
@@ -41,7 +41,7 @@ public class KhaiSinhRepository {
 			ps.setString(14, khaisinh.getIdNhanKhauMe());
 			ps.setString(15, khaisinh.getQuanHeNguoiKhaiSinh());
 			ps.setString(16, "Chờ xét duyệt");
-
+			ps.setString(17, khaisinh.getCccdNdk());
 			ps.executeUpdate();
 
 			return true;
@@ -123,7 +123,9 @@ public class KhaiSinhRepository {
 						rs.getString(13),
 						rs.getString(14),
 						rs.getString(15),
-						rs.getString(16));
+						rs.getString(16),
+						rs.getString(17)
+						);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -197,5 +199,43 @@ public class KhaiSinhRepository {
 		}
 		
 		return 0;
+	}
+	
+	public List<KhaiSinh> getAll(String cccd) {
+		String query = "select * from tbKHAISINH where cccdNdk='" + cccd+"'";
+		try {
+			new DBConnect();
+			conn = DBConnect.getConnection();
+			ps = conn.prepareStatement(query);
+			rs = ps.executeQuery();
+			List<KhaiSinh> khaiSinhs= new ArrayList<KhaiSinh>();
+			while (rs.next()) {
+				khaiSinhs.add(new KhaiSinh(
+						rs.getString(1),
+						rs.getString(2),
+						rs.getString(3),
+						new java.util.Date(rs.getDate(4).getTime()),
+						rs.getString(5),
+						new java.util.Date(rs.getDate(6).getTime()),
+						rs.getString(7),
+						rs.getString(8),
+						rs.getString(9),
+						rs.getString(10),
+						rs.getString(11),
+						rs.getString(12),
+						rs.getString(13),
+						rs.getString(14),
+						rs.getString(15),
+						rs.getString(16),
+						rs.getString(17)
+						));
+			}
+			
+			return khaiSinhs;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return null;
 	}
 }

@@ -19,6 +19,7 @@ public class KhaiSinh {
     private String idNhanKhauMe;
     private String quanHeNguoiKhaiSinh;
     private String trangThaiDuyet;
+    private String cccdNdk;
     
     public KhaiSinh() {
     	
@@ -27,7 +28,7 @@ public class KhaiSinh {
     
 	public KhaiSinh(String maDangKiKhaiSinh, String idHoKhau,String nguoiDangKy, Date ngayDangKy ,String hoTen, Date ngaySinh, String gioiTinh,
 			String quocTich, String danToc, String noiSinh, String queQuan, String noiCuTru, String idNhanKhauCha,
-			String idNhanKhauMe, String quanHeNguoiKhaiSinh, String trangthai) {
+			String idNhanKhauMe, String quanHeNguoiKhaiSinh, String trangthai, String cccdNdk) {
 		super();
 		this.maDangKiKhaiSinh = maDangKiKhaiSinh;
 		this.idHoKhau = idHoKhau;
@@ -45,6 +46,7 @@ public class KhaiSinh {
 		this.trangThaiDuyet=trangthai;
 		this.ngayDangKy= ngayDangKy;
 		this.nguoiDangKy =  nguoiDangKy;
+		this.cccdNdk=cccdNdk;
 	}
 
 
@@ -54,6 +56,16 @@ public class KhaiSinh {
 		this.idHoKhau = idHoKhau;
 		this.nguoiDangKy = nguoiDangKy;
 		this.ngayDangKy = ngayDangKy;
+	}
+
+
+	public String getCccdNdk() {
+		return cccdNdk;
+	}
+
+
+	public void setCccdNdk(String cccdNdk) {
+		this.cccdNdk = cccdNdk;
 	}
 
 

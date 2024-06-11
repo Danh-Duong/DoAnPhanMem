@@ -15,6 +15,7 @@ import model.TamVang;
 import repository.KhaiSinhRepository;
 import repository.NhanKhauRepository;
 import repository.TamVangRepository;
+import utils.EmailUtils;
 
 /**
  * Servlet implementation class DuyetTamVangController
@@ -88,6 +89,7 @@ public class DuyetTamVangController extends HttpServlet {
 			else if (type.equals("yes")) {
 				tamVangRepository.updateTrangthai(mahs,"Đã duyệt");
 				request.setAttribute("success", "Duyệt hồ sơ thành công!");
+				EmailUtils.sendEmailNoti("testdanh26@gmail.com", "tạm vắng", mahs, " đã được duyệt");
 				request.setAttribute("hoso", tamVangRepository.getDanhsachHoso("Đã duyệt"));
 				request.setAttribute("slhoso", tamVangRepository.getDanhsachHoso("Đã duyệt").size());
 				request.setAttribute("trangthai", 1);
@@ -98,6 +100,7 @@ public class DuyetTamVangController extends HttpServlet {
 			else {
 				tamVangRepository.updateTrangthai(mahs,"Đã hủy");
 				request.setAttribute("success", "Hủy hồ sơ thành công!");
+				EmailUtils.sendEmailNoti("testdanh26@gmail.com", "tạm vắng", mahs, " đã bị hủy");
 				request.setAttribute("hoso", tamVangRepository.getDanhsachHoso("Đã duyệt"));
 				request.setAttribute("slhoso", tamVangRepository.getDanhsachHoso("Đã duyệt").size());
 				request.setAttribute("trangthai", 1);

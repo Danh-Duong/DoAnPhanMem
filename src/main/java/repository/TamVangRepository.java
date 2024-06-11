@@ -45,7 +45,7 @@ public class TamVangRepository {
 	
 	
 	public boolean saveTamVang(TamVang tamVang) {
-		String query = "INSERT tbTAMVANG VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String query = "INSERT tbTAMVANG VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
 
 		try {
 			new DBConnect();
@@ -59,6 +59,7 @@ public class TamVangRepository {
 			ps.setDate(6, new java.sql.Date(tamVang.getNgayBatDau().getTime()));
 			ps.setDate(7, new java.sql.Date(tamVang.getNgayKetThuc().getTime()));
 			ps.setString(8, "Chờ xét duyệt");
+			ps.setString(9, tamVang.getCccdNdk());
 			ps.executeUpdate();
 
 			return true;
@@ -123,7 +124,7 @@ public class TamVangRepository {
 			ps = conn.prepareStatement(query);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				return new TamVang(rs.getString(1), new java.util.Date(rs.getDate(2).getTime()),rs.getString(3), rs.getString(4), rs.getString(5),new java.util.Date(rs.getDate(6).getTime()),new java.util.Date(rs.getDate(7).getTime()),rs.getString(8));
+				return new TamVang(rs.getString(1), new java.util.Date(rs.getDate(2).getTime()),rs.getString(3), rs.getString(4), rs.getString(5),new java.util.Date(rs.getDate(6).getTime()),new java.util.Date(rs.getDate(7).getTime()),rs.getString(8),rs.getString(9));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

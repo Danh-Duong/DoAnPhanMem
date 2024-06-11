@@ -96,6 +96,49 @@ public class EmailUtils {
         }
 		
 	}
+	
+	
+	public static void sendEmailNoti(String email,String loaihs, String mahs, String noti) {
+		Properties props = new Properties();
+        props.put("mail.smtp.host", MailConfig.HOST_NAME);
+        props.put("mail.smtp.port", MailConfig.PORT);
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+ 
+        // get Session
+        Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(MailConfig.APP_EMAIL, MailConfig.APP_PASSWORD);
+            }
+        });
+ 
+        // compose message
+        try {
+        	MimeMessage message = new MimeMessage(session);
+
+            // Đặt người nhận
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
+
+            // Đặt chủ đề email
+            message.setSubject("THÔNG BÁO", "UTF-8");
+
+            // Đặt nội dung email với định dạng HTML
+            String htmlContent = "<h1>Xin chào, "+ email +"</h1>"   
+            		+ "<h3>Đăng ký " + loaihs + noti +" </h3>"
+            		+ "<h3>Mã hồ sơ của bạn là: <span style='color: green; font-size: 28px; font-weight: 600;'>"+ mahs+"</span></h3>"
+            		+ "<p>Xin cảm ơn!</p>";
+            message.setContent(htmlContent, "text/html; charset=UTF-8");
+
+            // Gửi email
+            Transport.send(message);
+
+            System.out.println("Message sent successfully");
+        } catch (MessagingException e) {
+        	e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+		
+	}
 
 	
 }

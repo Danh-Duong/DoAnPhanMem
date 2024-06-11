@@ -112,7 +112,7 @@ public class DangKyKhaiSinhController extends HttpServlet {
 		} else {
 			KhaiSinh khaiSinh = new KhaiSinh(maDangKiKhaiSinh, idHoKhau, nguoidangky, new Date(), hoTen, ngaySinh,
 					gioiTinh, quocTich, danToc, noiSinh, queQuan, "Đà Nẵng", idNhanKhauCha, idNhanKhauMe,
-					quanHeNguoiKhaiSinh, "Chờ xét duyệt");
+					quanHeNguoiKhaiSinh, "Chờ xét duyệt", CookieUtils.getCookieByName(request, "cccd"));
 			if (khaiSinhRepository.saveKhaiSinh(khaiSinh)) {
 				TaiKhoanRepository taiKhoanRepository = new TaiKhoanRepository();
 				EmailUtils.sendEmail(request.getParameter("nguoiyeucau"),
